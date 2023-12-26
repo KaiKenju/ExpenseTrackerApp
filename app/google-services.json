@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "78667086404",
+    "project_id": "expense-manager-d9852",
+    "storage_bucket": "expense-manager-d9852.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78667086404:android:e54133acd8acbe2c469a11",
+        "android_client_info": {
+          "package_name": "vn.edu.usth.expensetrackerfire"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD56HNE-9Nm3vtSOwvsO3mvF3TdjkuWrsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
