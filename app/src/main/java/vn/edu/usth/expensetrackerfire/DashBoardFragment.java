@@ -60,6 +60,8 @@ public class DashBoardFragment extends Fragment {
     //recycler view
     private RecyclerView mRecyclerIncome,mRecyclerExpense;
 
+    private int totalSum = 0;
+    private int totalSum_ex = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,6 +77,7 @@ public class DashBoardFragment extends Fragment {
 
         mIncomeDatabase.keepSynced(true);
         mExpenseDatabase.keepSynced(true);
+
 
 
         //connect
@@ -94,6 +97,8 @@ public class DashBoardFragment extends Fragment {
         // anh xa Recycler
         mRecyclerIncome = myview.findViewById(R.id.recycler_income_dash);
         mRecyclerExpense = myview.findViewById(R.id.recycler_expense_dash);
+        //total balance
+
 
 
         fab_main_btn.setOnClickListener(new View.OnClickListener() {
@@ -135,16 +140,25 @@ public class DashBoardFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                int totalSum = 0;
+                totalSum = 0;
                 for (DataSnapshot mysnap:dataSnapshot.getChildren()){
                     Data data = mysnap.getValue(Data.class);
-
-                    totalSum+= data.getAmount();
-                    String stResult = String.valueOf(totalSum);
-
-                    totalIncomeResult.setText(stResult+" VND");
-
+                    totalSum += data.getAmount();
                 }
+
+                String stResult;
+                if (totalSum < 0) {
+                    stResult = "- $" + String.valueOf(Math.abs(totalSum));
+                } else if (totalSum > 0) {
+                    stResult = "+ $" + String.valueOf(totalSum);
+                } else {
+                    stResult = "$0";
+                }
+
+                totalIncomeResult.setText(stResult);
+                updateTotalBalance();
+
+
             }
 
             @Override
@@ -152,21 +166,29 @@ public class DashBoardFragment extends Fragment {
 
             }
         });
+
 
         //calculate toatal expense
         mExpenseDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int totalSum_ex = 0;
-                for (DataSnapshot mysnap:dataSnapshot.getChildren()){
+                totalSum_ex = 0;
+                for (DataSnapshot mysnap : dataSnapshot.getChildren()) {
                     Data data = mysnap.getValue(Data.class);
-
-                    totalSum_ex+= data.getAmount();
-                    String stResult_ex = String.valueOf(totalSum_ex);
-
-                    totalExpenseResult.setText(stResult_ex+" VND");
-
+                    totalSum_ex += data.getAmount();
                 }
+
+                String stResult_ex;
+                if (totalSum_ex > 0) {
+                    stResult_ex = "- $" + String.valueOf(Math.abs(totalSum_ex));
+                } else {
+                    stResult_ex = "$0";
+                }
+
+                totalExpenseResult.setText(stResult_ex);
+                updateTotalBalance();
+
+
             }
 
             @Override
@@ -174,6 +196,7 @@ public class DashBoardFragment extends Fragment {
 
             }
         });
+
 
         // recycler
         LinearLayoutManager layoutManagerIncome = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false);
@@ -192,6 +215,14 @@ public class DashBoardFragment extends Fragment {
 
 
         return myview;
+    }
+    private void updateTotalBalance() {
+        int totalBalanceValue = totalSum - totalSum_ex;
+        String totalBalanceText = "$" + String.valueOf(totalBalanceValue);
+        if (getActivity() != null) {
+            TextView totalBalance = getActivity().findViewById(R.id.total_balance);
+            totalBalance.setText(totalBalanceText);
+        }
     }
 
     //float button animation
