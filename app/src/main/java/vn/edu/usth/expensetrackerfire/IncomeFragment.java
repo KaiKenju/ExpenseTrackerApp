@@ -44,7 +44,7 @@ public class IncomeFragment extends Fragment {
     private Button btnUpdate, btnDelete;
     //data item value
     private String type,note;
-    private int amount;
+    private double amount;
     private String post_key;
 
 
@@ -167,7 +167,7 @@ public class IncomeFragment extends Fragment {
 
         }
 
-        private void setAmount(int amount){
+        private void setAmount(double amount){
             TextView mAmount = mView.findViewById(R.id.amount_txt_income);
             String stamount = String.valueOf(amount);
             mAmount.setText(stamount);

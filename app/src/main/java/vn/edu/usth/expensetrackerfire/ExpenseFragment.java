@@ -162,7 +162,7 @@ public class ExpenseFragment extends Fragment {
 
         }
 
-        private void setAmount(int amount){
+        private void setAmount(double amount){
             TextView mAAmount = mView.findViewById(R.id.amount_txt_expense);
             String stamount = String.valueOf(amount);
             mAAmount.setText(stamount);

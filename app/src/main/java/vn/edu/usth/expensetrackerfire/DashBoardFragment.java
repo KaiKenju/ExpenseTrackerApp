@@ -1,7 +1,7 @@
 package vn.edu.usth.expensetrackerfire;
 
 import android.app.AlertDialog;
-import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,12 +18,17 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,9 +40,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import vn.edu.usth.expensetrackerfire.model.Data;
@@ -59,9 +63,10 @@ public class DashBoardFragment extends Fragment {
     private DatabaseReference mIncomeDatabase, mExpenseDatabase;
     //recycler view
     private RecyclerView mRecyclerIncome,mRecyclerExpense;
+    private PieChart pieChart;
 
-    private int totalSum = 0;
-    private int totalSum_ex = 0;
+    private double totalSum = 0;
+    private double totalSum_ex = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,7 +102,9 @@ public class DashBoardFragment extends Fragment {
         // anh xa Recycler
         mRecyclerIncome = myview.findViewById(R.id.recycler_income_dash);
         mRecyclerExpense = myview.findViewById(R.id.recycler_expense_dash);
-        //total balance
+        //pie,bar chart
+//        BarChart barChart = myview.findViewById(R.id.bar_chart);
+         pieChart = myview.findViewById(R.id.pie_chart);
 
 
 
@@ -157,6 +164,7 @@ public class DashBoardFragment extends Fragment {
 
                 totalIncomeResult.setText(stResult);
                 updateTotalBalance();
+                ChartPie();
 
 
             }
@@ -187,7 +195,7 @@ public class DashBoardFragment extends Fragment {
 
                 totalExpenseResult.setText(stResult_ex);
                 updateTotalBalance();
-
+                ChartPie();
 
             }
 
@@ -211,18 +219,48 @@ public class DashBoardFragment extends Fragment {
         mRecyclerExpense.setHasFixedSize(true);
         mRecyclerExpense.setLayoutManager(layoutManagerExpense);
 
+        // pie, bar chart
 
 
 
         return myview;
     }
     private void updateTotalBalance() {
-        int totalBalanceValue = totalSum - totalSum_ex;
+        double totalBalanceValue = Math.round((totalSum - totalSum_ex)*100.0)/100.0;
+
         String totalBalanceText = "$" + String.valueOf(totalBalanceValue);
         if (getActivity() != null) {
             TextView totalBalance = getActivity().findViewById(R.id.total_balance);
             totalBalance.setText(totalBalanceText);
         }
+    }
+    private void ChartPie(){
+        ArrayList<PieEntry> entries = new ArrayList<>();
+        entries.add(new PieEntry((float) totalSum, "Income"));
+        entries.add(new PieEntry((float) totalSum_ex,  "Expense"));
+
+
+        PieDataSet pieDataSet = new PieDataSet(entries ,"");
+        pieDataSet.setValueTextSize(15f);
+        pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+
+
+        Legend legend = pieChart.getLegend();
+        legend.setTextSize(16f);
+        legend.setTextColor(Color.WHITE);
+
+
+        PieData pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setCenterText("Summary");
+        pieChart.setEntryLabelTextSize(17f);
+        pieChart.animateY(1000);
+        pieChart.invalidate();
+    }
+
+    private void ChartBar(){
+
     }
 
     //float button animation
@@ -302,7 +340,7 @@ public class DashBoardFragment extends Fragment {
                     edtAmount.setError("Required Field..");
                     return;
                 }
-                int ouramountint = Integer.parseInt(amount);
+                double ouramountint = Double.parseDouble(amount);
 
                 if(TextUtils.isEmpty(note)){
                     edtNote.setError("Required Field..");
@@ -314,10 +352,6 @@ public class DashBoardFragment extends Fragment {
 
                 Data data = new Data(ouramountint,type,note,id, mDate);
 
-//                mIncomeDatabase.child(id).setValue(data);
-//                Toast.makeText(getActivity(), "Data Added", Toast.LENGTH_SHORT).show();
-//
-//                dialog.dismiss();
                 mIncomeDatabase.child(id).setValue(data)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -377,7 +411,7 @@ public class DashBoardFragment extends Fragment {
                     return;
                 }
 
-                int inamount = Integer.parseInt(tmAmount);
+                double inamount = Double.parseDouble(tmAmount);
 
                 if(TextUtils.isEmpty(tmType)){
                     type.setError("Required field..");
@@ -487,7 +521,7 @@ public class DashBoardFragment extends Fragment {
             mtype.setText(type);
         }
 
-        public void setmIncomeAmount(int amount){
+        public void setmIncomeAmount(double amount){
             TextView mAmount = mIncomeView.findViewById(R.id.amount_income_dash);
             String strAmount= String.valueOf(amount);
 
@@ -512,7 +546,7 @@ public class DashBoardFragment extends Fragment {
             mtype.setText(type);
         }
 
-        public void setmExpenseAmount(int amount){
+        public void setmExpenseAmount(double amount){
             TextView mAmount = mExpenseView.findViewById(R.id.amount_expense_dash);
             String strAmount= String.valueOf(amount);
 
