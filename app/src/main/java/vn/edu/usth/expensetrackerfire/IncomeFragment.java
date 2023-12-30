@@ -77,14 +77,14 @@ public class IncomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                int totlavalue = 0;
+                double totlavalue = 0.0;
 
                 for (DataSnapshot mysnapshot:dataSnapshot.getChildren()){
                     Data data = mysnapshot.getValue(Data.class);
                     totlavalue+=data.getAmount();
 
                     String stTotalvalue = String.valueOf(totlavalue);
-                    incomeTotalSum.setText(stTotalvalue +" VND");
+                    incomeTotalSum.setText("+$ " + stTotalvalue);
                 }
 
 
@@ -170,7 +170,7 @@ public class IncomeFragment extends Fragment {
         private void setAmount(double amount){
             TextView mAmount = mView.findViewById(R.id.amount_txt_income);
             String stamount = String.valueOf(amount);
-            mAmount.setText(stamount);
+            mAmount.setText("+$ " + stamount);
 
         }
 

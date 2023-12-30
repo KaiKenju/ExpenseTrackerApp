@@ -77,13 +77,13 @@ public class ExpenseFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                int expenseSum = 0;
+                double expenseSum = 0.0;
                 for (DataSnapshot mysnapshot:dataSnapshot.getChildren()){
                     Data data = mysnapshot.getValue(Data.class);
                     expenseSum+=data.getAmount();
 
                     String stExpensesum = String.valueOf(expenseSum);
-                    expenseSumResult.setText(stExpensesum + " VND");
+                    expenseSumResult.setText("-$ " + stExpensesum);
                 }
 
             }
@@ -165,7 +165,7 @@ public class ExpenseFragment extends Fragment {
         private void setAmount(double amount){
             TextView mAAmount = mView.findViewById(R.id.amount_txt_expense);
             String stamount = String.valueOf(amount);
-            mAAmount.setText(stamount);
+            mAAmount.setText("-$ "+ stamount);
 
         }
 
