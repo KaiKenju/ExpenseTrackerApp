@@ -482,7 +482,7 @@ public class DashBoardFragment extends Fragment {
         /// truot ngang tach biet
         FirebaseRecyclerOptions<Data> options1 =
                 new FirebaseRecyclerOptions.Builder<Data>()
-                        .setQuery(mIncomeDatabase, Data.class)
+                        .setQuery(mExpenseDatabase, Data.class)
                         .build();
 
         FirebaseRecyclerAdapter<Data, ExpenseViewHolder> expenseAdapter = new FirebaseRecyclerAdapter<Data, ExpenseViewHolder>(options1) {

@@ -5,7 +5,7 @@
     app:cardElevation="5dp"
     android:elevation="5dp"
     android:backgroundTint="#1a191e"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
     android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"

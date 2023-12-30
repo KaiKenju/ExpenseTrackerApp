@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
     android:background="@drawable/editext_background_header"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,10 +11,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Expense Manager"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/white"
-        android:gravity="center"
-
         />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100sp"
+        android:layout_gravity="center"
+        android:id="@+id/profileImage"
+        android:layout_height="100sp"/>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:id="@+id/nameTV"-->
+<!--        android:hint="Hiep"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_height="wrap_content"/>-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:id="@+id/mailTV"-->
+<!--        android:hint="Kimlongdevuong5"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_height="wrap_content"/>-->
+
 
 </LinearLayout>
