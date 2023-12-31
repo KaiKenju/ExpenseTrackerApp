@@ -1,6 +1,7 @@
 package vn.edu.usth.expensetrackerfire;
 
 import android.app.AlertDialog;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -41,7 +43,8 @@ public class IncomeFragment extends Fragment {
     private TextView incomeTotalSum;
     //update edittext
     private EditText edtAmount,edtType, edtNote;
-    private Button btnUpdate, btnDelete;
+    private Button  btnUpdate;
+    private ImageView btnDelete;
     //data item value
     private String type,note;
     private double amount;
@@ -212,7 +215,7 @@ public class IncomeFragment extends Fragment {
                 String mdAmount = String.valueOf(amount);
                 mdAmount = edtAmount.getText().toString().trim();
 
-                int myAmount  = Integer.parseInt(mdAmount);
+                double myAmount  = Double.parseDouble(mdAmount);
                 String mDate = DateFormat.getDateInstance().format(new Date());
                 Data data = new Data(myAmount, type, note,post_key,mDate);
 

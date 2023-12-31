@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -41,8 +42,8 @@ public class ExpenseFragment extends Fragment {
     private TextView expenseSumResult;
     //edit data item
     private EditText edtAmount,edtType, edtNote;
-    private Button btnUpdate, btnDelete;
-
+    private Button  btnUpdate;
+    private ImageView btnDelete;
     //data variable
     private String type,note,amount;
     private String post_key_ex;
@@ -207,7 +208,7 @@ public class ExpenseFragment extends Fragment {
                 String stamount = String.valueOf(amount);
                 stamount = edtAmount.getText().toString().trim();
 
-                int intamount  = Integer.parseInt(stamount);
+                double intamount  = Double.parseDouble(stamount);
                 String mDate  = DateFormat.getDateInstance().format(new Date());
 
                 Data data = new Data(intamount, type, note,post_key_ex,mDate);

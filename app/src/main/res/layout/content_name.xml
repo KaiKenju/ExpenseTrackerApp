@@ -24,7 +24,7 @@
         app:menu = "@menu/bottommenu"
         app:itemTextColor="@android:color/white"
         app:itemIconTint="@android:color/white"
-        android:background="@drawable/editext_background"
+        android:background="#121212"
         />
 
 
