@@ -56,15 +56,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         //logout
         mAuth = FirebaseAuth.getInstance();
-        logout_gg = findViewById(R.id.logout2);
-        logout_gg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent i = new Intent(HomeActivity.this, MainActivity.class);
-                startActivity(i);
-            }
-        });
+//        logout_gg = findViewById(R.id.logout2);
+//        logout_gg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseAuth.getInstance().signOut();
+//                Intent i = new Intent(HomeActivity.this, MainActivity.class);
+//                startActivity(i);
+//            }
+//        });
 
 
 

@@ -1,6 +1,7 @@
 package vn.edu.usth.expensetrackerfire;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -370,11 +371,78 @@ public class DashBoardFragment extends Fragment {
             }
         });
 
+//        btnCancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ftAnimation();
+//                dialog.dismiss();
+//            }
+//        });
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
+//            public void onClick(View view) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//                builder.setTitle("Cancel Action");
+//                builder.setMessage("Are you sure you want to cancel?");
+//
+//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        // Perform cancellation action here
+//                        ftAnimation();
+//                        dialog.dismiss();
+//                        // Add more actions if needed
+//                    }
+//                });
+//
+//                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        // Do nothing or add actions for not canceling
+//                    }
+//                });
+//
+//                AlertDialog cancelDialog  = builder.create();
+//                cancelDialog.show();
+//
+//            }
+
             public void onClick(View view) {
-                ftAnimation();
-                dialog.dismiss();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                // Inflate the custom layout for the dialog
+                View customView = getLayoutInflater().inflate(R.layout.custom_dialog_layout, null);
+                builder.setView(customView);
+
+                // Create the AlertDialog
+                AlertDialog cancelDialog = builder.create();
+
+                // Find buttons in the custom dialog layout
+                Button btnYes = customView.findViewById(R.id.btnYes);
+                Button btnNo = customView.findViewById(R.id.btnNo);
+
+                // Set click listeners for Yes and No buttons
+                btnYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Perform cancellation action
+                        ftAnimation();
+                        cancelDialog.dismiss();
+                        dialog.dismiss();
+                        // Additional actions if needed
+                    }
+                });
+
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Dismiss the dialog without taking any action
+                        cancelDialog.dismiss();
+                        // Additional actions if needed
+                    }
+                });
+
+                // Show the custom dialog
+                cancelDialog.show();
             }
         });
         dialog.show();
@@ -440,10 +508,47 @@ public class DashBoardFragment extends Fragment {
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
+//            public void onClick(View view) {
+//                dialog.dismiss();
+//                ftAnimation();
+//
+//            }
             public void onClick(View view) {
-                dialog.dismiss();
-                ftAnimation();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                // Inflate the custom layout for the dialog
+                View customView = getLayoutInflater().inflate(R.layout.custom_dialog_layout, null);
+                builder.setView(customView);
 
+                // Create the AlertDialog
+                AlertDialog cancelDialog = builder.create();
+
+                // Find buttons in the custom dialog layout
+                Button btnYes = customView.findViewById(R.id.btnYes);
+                Button btnNo = customView.findViewById(R.id.btnNo);
+
+                // Set click listeners for Yes and No buttons
+                btnYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Perform cancellation action
+                        ftAnimation();
+                        cancelDialog.dismiss();
+                        dialog.dismiss();
+                        // Additional actions if needed
+                    }
+                });
+
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Dismiss the dialog without taking any action
+                        cancelDialog.dismiss();
+                        // Additional actions if needed
+                    }
+                });
+
+                // Show the custom dialog
+                cancelDialog.show();
             }
         });
         dialog.show();

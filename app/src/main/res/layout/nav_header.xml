@@ -16,11 +16,7 @@
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/white"
         />
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="100sp"
-        android:layout_gravity="center"
-        android:id="@+id/profileImage"
-        android:layout_height="100sp"/>
+
 
 
 

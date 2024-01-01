@@ -2,103 +2,117 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="#121212"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent">
             <LinearLayout
+                android:background="#1a191e"
                 android:layout_width="match_parent"
+                android:layout_gravity="center"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Details"
+                    android:padding="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/end"
+                    android:textSize="25dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Title"
+                    android:textColor="#B5B1B1"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/type_edt"
+                    android:layout_width="match_parent"
+                    android:hint="type"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/end"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Amount"
+                    android:textColor="#B5B1B1"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
                     android:layout_height="wrap_content">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="AMOUNT:"
+                        android:text="$"
+                        android:layout_marginTop="6dp"
+                        android:textSize="20dp"
+                        android:layout_marginRight="5dp"
+                        android:textColor="@color/end"
                         android:layout_height="wrap_content"/>
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
                     <EditText
                         android:id="@+id/amount_edt"
                         android:layout_width="match_parent"
                         android:hint="amount"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/end"
+                        android:layout_marginTop="5dp"
                         android:layout_height="wrap_content"/>
-
-                </RelativeLayout>
-
+                </LinearLayout>
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="TYPE:"
-                        android:layout_height="wrap_content"/>
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/type_edt"
-                        android:layout_width="match_parent"
-                        android:hint="type"
-                        android:layout_height="wrap_content"/>
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="NOTE:"
-                        android:layout_height="wrap_content"/>
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/note_edt"
-                        android:layout_width="match_parent"
-                        android:hint="note"
-                        android:layout_height="wrap_content"/>
-
-                </RelativeLayout>
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Note"
+                    android:textColor="#B5B1B1"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/note_edt"
+                    android:layout_width="match_parent"
+                    android:hint="note"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/end"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <LinearLayout
@@ -117,9 +131,8 @@
                         android:text="Cancel"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="@android:color/black"
-                        android:background="@color/expense_amount"
+                        android:background="#BF0D25"
                         android:layout_height="wrap_content"/>
-
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -130,11 +143,11 @@
                     android:layout_height="wrap_content">
                     <Button
                         android:id="@+id/btnSave"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:text="Save"
-                        android:background="#38AE1D"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="@android:color/black"
+                        android:background="@drawable/edit_data"
                         android:layout_height="wrap_content"/>
 
                 </RelativeLayout>
@@ -144,5 +157,6 @@
 
         </LinearLayout>
 
+    </ScrollView>
 
 </LinearLayout>
