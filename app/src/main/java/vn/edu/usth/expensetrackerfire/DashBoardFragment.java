@@ -24,11 +24,18 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -65,6 +72,7 @@ public class DashBoardFragment extends Fragment {
     //recycler view
     private RecyclerView mRecyclerIncome,mRecyclerExpense;
     private PieChart pieChart;
+    private BarChart barChart;
 
     private double totalSum = 0;
     private double totalSum_ex = 0;
@@ -85,7 +93,6 @@ public class DashBoardFragment extends Fragment {
         mExpenseDatabase.keepSynced(true);
 
 
-
         //connect
         fab_main_btn = myview.findViewById(R.id.fb_main_plus_btn);
         fab_income_btn = myview.findViewById(R.id.income_Ft_btn);
@@ -104,8 +111,8 @@ public class DashBoardFragment extends Fragment {
         mRecyclerIncome = myview.findViewById(R.id.recycler_income_dash);
         mRecyclerExpense = myview.findViewById(R.id.recycler_expense_dash);
         //pie,bar chart
-//        BarChart barChart = myview.findViewById(R.id.bar_chart);
-         pieChart = myview.findViewById(R.id.pie_chart);
+        barChart = myview.findViewById(R.id.bar_chart);
+        pieChart = myview.findViewById(R.id.pie_chart);
 
 
 
@@ -158,7 +165,8 @@ public class DashBoardFragment extends Fragment {
                 if (totalSum < 0) {
                     stResult = "- $" + String.valueOf(Math.abs(totalSum));
                 } else if (totalSum > 0) {
-                    stResult = "+ $" + String.valueOf(totalSum);
+//                    stResult = "+ $" + String.valueOf(totalSum);
+                    stResult = "+ $" + String.format("%.1f", Math.abs(totalSum));
                 } else {
                     stResult = "$0";
                 }
@@ -166,6 +174,7 @@ public class DashBoardFragment extends Fragment {
                 totalIncomeResult.setText(stResult);
                 updateTotalBalance();
                 ChartPie();
+                ChartBar();
 
 
             }
@@ -189,7 +198,8 @@ public class DashBoardFragment extends Fragment {
 
                 String stResult_ex;
                 if (totalSum_ex > 0) {
-                    stResult_ex = "- $" + String.valueOf(Math.abs(totalSum_ex));
+//                    stResult_ex = "- $" + String.valueOf(Math.abs(totalSum_ex));
+                    stResult_ex = "- $" + String.format("%.1f", Math.abs(totalSum_ex));
                 } else {
                     stResult_ex = "$0";
                 }
@@ -197,6 +207,7 @@ public class DashBoardFragment extends Fragment {
                 totalExpenseResult.setText(stResult_ex);
                 updateTotalBalance();
                 ChartPie();
+                ChartBar();
 
             }
 
@@ -219,8 +230,6 @@ public class DashBoardFragment extends Fragment {
         layoutManagerExpense.setReverseLayout(true);
         mRecyclerExpense.setHasFixedSize(true);
         mRecyclerExpense.setLayoutManager(layoutManagerExpense);
-
-        // pie, bar chart
 
 
 
@@ -261,7 +270,50 @@ public class DashBoardFragment extends Fragment {
     }
 
     private void ChartBar(){
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(0, (float) totalSum, "Income"));
+        barEntries.add(new BarEntry(1, (float) totalSum_ex, "Expense"));
 
+        BarDataSet barDataSet = new BarDataSet(barEntries,"");
+
+        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        barDataSet.setValueTextColor(Color.WHITE);
+        barDataSet.setValueTextSize(15f);
+
+        Legend legend = barChart.getLegend();
+        legend.setTextSize(16f);
+        legend.setTextColor(Color.WHITE);
+
+
+        ArrayList<String> labels = new ArrayList<>();
+        labels.add("Income");
+        labels.add("Expense");
+
+        BarData barData = new BarData(barDataSet);
+        barData.setBarWidth(0.5f); // Set độ rộng của cột
+
+        barChart.setData(barData);
+
+        // Đặt nhãn cho trục X
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setTextColor(Color.WHITE); // Đặt màu sắc của nhãn trên trục X
+        xAxis.setTextSize(14f);
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+        //trục y
+        YAxis yAxis = barChart.getAxisLeft();
+        YAxis yAxis1 = barChart.getAxisRight();// hoặc barChart.getAxisRight() nếu bạn muốn thay đổi trục Y bên phải
+        yAxis.setTextColor(Color.WHITE);
+        yAxis1.setTextColor(Color.WHITE);
+
+        barChart.getDescription().setEnabled(false);
+        barChart.setDrawGridBackground(false);
+        barChart.setDrawBorders(false);
+        barChart.setTouchEnabled(false);
+
+        barChart.invalidate();
     }
 
     //float button animation
@@ -349,8 +401,8 @@ public class DashBoardFragment extends Fragment {
                 }
 
                 String id = mIncomeDatabase.push().getKey();
-                String mDate = DateFormat.getDateInstance().format(new Date());
-
+//                String mDate = DateFormat.getDateInstance().format(new Date());
+                String mDate = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT).format(new Date());
                 Data data = new Data(ouramountint,type,note,id, mDate);
 
                 mIncomeDatabase.child(id).setValue(data)
@@ -370,43 +422,8 @@ public class DashBoardFragment extends Fragment {
 
             }
         });
-
-//        btnCancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ftAnimation();
-//                dialog.dismiss();
-//            }
-//        });
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
-//            public void onClick(View view) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-//                builder.setTitle("Cancel Action");
-//                builder.setMessage("Are you sure you want to cancel?");
-//
-//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        // Perform cancellation action here
-//                        ftAnimation();
-//                        dialog.dismiss();
-//                        // Add more actions if needed
-//                    }
-//                });
-//
-//                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        // Do nothing or add actions for not canceling
-//                    }
-//                });
-//
-//                AlertDialog cancelDialog  = builder.create();
-//                cancelDialog.show();
-//
-//            }
-
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 // Inflate the custom layout for the dialog
@@ -508,11 +525,6 @@ public class DashBoardFragment extends Fragment {
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
-//            public void onClick(View view) {
-//                dialog.dismiss();
-//                ftAnimation();
-//
-//            }
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 // Inflate the custom layout for the dialog
@@ -608,9 +620,6 @@ public class DashBoardFragment extends Fragment {
         };
         mRecyclerExpense.setAdapter(expenseAdapter);
         expenseAdapter.startListening();
-
-
-
     }
 
     //for income data

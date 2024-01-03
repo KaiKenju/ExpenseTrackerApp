@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import vn.edu.usth.expensetrackerfire.model.Data;
@@ -86,7 +87,8 @@ public class IncomeFragment extends Fragment {
                     Data data = mysnapshot.getValue(Data.class);
                     totlavalue+=data.getAmount();
 
-                    String stTotalvalue = String.valueOf(totlavalue);
+//                    String stTotalvalue = String.valueOf(totlavalue);
+                    String stTotalvalue = String.format("%.1f", totlavalue);
                     incomeTotalSum.setText("+$ " + stTotalvalue);
                 }
 
@@ -166,8 +168,7 @@ public class IncomeFragment extends Fragment {
 
         private void setDate(String date){
             TextView mDate = mView.findViewById(R.id.date_txt_income);
-            mDate.setText(date);
-
+           mDate.setText(date);
         }
 
         private void setAmount(double amount){
@@ -207,6 +208,7 @@ public class IncomeFragment extends Fragment {
 
         AlertDialog dialog = mydialog.create();
 
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -220,9 +222,7 @@ public class IncomeFragment extends Fragment {
                 Data data = new Data(myAmount, type, note,post_key,mDate);
 
                 mIncomeDatabase.child(post_key).setValue(data);
-
                 dialog.dismiss();
-
             }
         });
 

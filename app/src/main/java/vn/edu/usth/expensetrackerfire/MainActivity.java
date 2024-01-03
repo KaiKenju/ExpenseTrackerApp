@@ -2,12 +2,18 @@ package vn.edu.usth.expensetrackerfire;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,6 +23,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -24,6 +31,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -85,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
+                String personName = account.getDisplayName();
+                String personEmail = account.getEmail();
                 AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
 
                 FirebaseAuth.getInstance().signInWithCredential(credential)
@@ -92,15 +103,24 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                                    startActivity(intent);
+                                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                                    Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                                    intent.putExtra("NAME_KEY", personName);
+                                    intent.putExtra("EMAIL_KEY", personEmail);
                                     startActivity(intent);
+
+                                    // Finish the current activity
+                                    finish();
                                 }else{
                                     Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
+
                         });
             } catch (ApiException e) {
-               e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }
@@ -111,9 +131,11 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 //        if (user != null){
-//            Intent intent = new Intent(this, HomeActivity.class);
-//            startActivity(intent);
+////            Intent intent = new Intent(this, HomeActivity.class);
+////            startActivity(intent);
+//
 //        }
+
     }
 
     // Add a sign-out method
@@ -127,9 +149,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
     private void loginDetail(){
         mEmail = findViewById(R.id.email_login);
