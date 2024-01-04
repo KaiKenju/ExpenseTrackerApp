@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private GoogleSignInClient client;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +81,22 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            // lấy dữ liệu khi re-login
+            SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+            String personName = sharedPreferences.getString("NAME_KEY", "");
+            String personEmail = sharedPreferences.getString("EMAIL_KEY", "");
+
+            // Check data user in  SharedPreferences or not
+            if (!TextUtils.isEmpty(personName) && !TextUtils.isEmpty(personEmail)) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("NAME_KEY", personName);
+                intent.putExtra("EMAIL_KEY", personEmail);
+                startActivity(intent);
+            } else {
+                Toast.makeText(MainActivity.this, "Can't not retrieve data re-login", Toast.LENGTH_SHORT).show();
+            }
+
+//            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         }
 
         mDialog = new ProgressDialog(this);
@@ -111,8 +127,17 @@ public class MainActivity extends AppCompatActivity {
                                     intent.putExtra("EMAIL_KEY", personEmail);
                                     startActivity(intent);
 
+                                    // lưu trữ dữ liệu để cb re-login
+                                    SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("NAME_KEY", personName);
+                                    editor.putString("EMAIL_KEY", personEmail);
+                                    editor.apply();
+
                                     // Finish the current activity
                                     finish();
+
+
                                 }else{
                                     Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
@@ -131,11 +156,8 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 //        if (user != null){
-////            Intent intent = new Intent(this, HomeActivity.class);
-////            startActivity(intent);
 //
 //        }
-
     }
 
     // Add a sign-out method

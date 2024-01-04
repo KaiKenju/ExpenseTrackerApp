@@ -122,6 +122,18 @@
                     android:textAppearance="?android:textAppearanceSmall"
                     android:textColor="#B5B1B1"
                     android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/category_spinner"
+                    android:layout_width="wrap_content"
+                    android:background="@color/black"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/selected_category_textview"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/end"
+                    android:layout_height="wrap_content"
+                    android:text="Selected Category: " />
             </LinearLayout>
 
             <LinearLayout

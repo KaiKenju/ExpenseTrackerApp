@@ -1,7 +1,6 @@
 package vn.edu.usth.expensetrackerfire;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -17,8 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -362,6 +364,8 @@ public class DashBoardFragment extends Fragment {
         });
     }
     public void incomeDataInsert(){
+        String[] categories = {"Food", "Clothing", "Electronics", "Books", "Health"};
+
         AlertDialog.Builder mydialog = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = LayoutInflater.from(getActivity());
 
@@ -377,6 +381,28 @@ public class DashBoardFragment extends Fragment {
 
         Button btnSave = myviewm.findViewById(R.id.btnSave);
         Button btnCancel = myviewm.findViewById(R.id.btnCancel);
+        //spinner
+        Spinner categorySpinner = myviewm.findViewById(R.id.category_spinner);
+
+        ArrayAdapter adapter = new ArrayAdapter<>(requireContext(), R.layout.custome_layout_spinner, categories);
+        adapter.setDropDownViewResource(R.layout.custome_spinner_dropdown);
+        categorySpinner.setAdapter(adapter);
+        // select item
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                String selectedCategory = categories[position]; // Get the selected category
+                TextView selectedCategoryTextView = myviewm.findViewById(R.id.selected_category_textview);
+                selectedCategoryTextView.setText("Selected Category: " + selectedCategory); // Update TextView
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Handle no selection if needed
+            }
+        });
+
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -464,6 +490,19 @@ public class DashBoardFragment extends Fragment {
         });
         dialog.show();
 
+    }
+    private void openIncomeFragment(String selectedCategory) {
+        IncomeFragment incomeFragment = new IncomeFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("SELECTED_CATEGORY", selectedCategory);
+        incomeFragment.setArguments(bundle);
+
+        // Navigate to IncomeFragment
+        getParentFragmentManager()
+                .beginTransaction()
+                .replace(R.id.carrr, incomeFragment)
+                .addToBackStack(null) // If you want to add to the back stack
+                .commit();
     }
 
     public void expenseDataInsert(){

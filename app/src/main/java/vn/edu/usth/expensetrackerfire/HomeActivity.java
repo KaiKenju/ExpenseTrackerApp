@@ -69,6 +69,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         //logout
         mAuth = FirebaseAuth.getInstance();
+        //retrieve data
         Intent intent = getIntent();
         if(intent != null){
             String name = intent.getStringExtra("NAME_KEY");
@@ -81,6 +82,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             nameTextView.setText(name);
             emailTextView.setText(email);
         }
+
         bottomNavigationView = findViewById(R.id.bottomNavigationbar);
         framelayout = findViewById(R.id.main_frame);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
