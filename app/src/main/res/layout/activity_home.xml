@@ -27,20 +27,23 @@
         app:itemTextColor="@color/black"
         app:headerLayout="@layout/nav_header"
         android:layout_height="match_parent">
-<!--        <com.google.android.material.imageview.ShapeableImageView-->
-<!--            android:id="@+id/profileImage"-->
-<!--            android:layout_width="50sp"-->
-<!--            android:layout_marginTop="50sp"-->
-<!--            android:layout_marginLeft="90sp"-->
-<!--            android:layout_height="50sp">-->
-<!--        </com.google.android.material.imageview.ShapeableImageView>-->
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="60sp"
+            android:src="@drawable/art_user"
+            android:layout_marginTop="70sp"
+            android:layout_marginLeft="115sp"
+            android:layout_height="60sp"/>
+
         <TextView
             android:layout_width="match_parent"
             android:id="@+id/nameTV"
             android:hint="name"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:layout_marginTop="100dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="140dp"
+            android:textColor="@color/black"
             android:layout_marginBottom="250dp"
             android:layout_height="wrap_content"/>
         <TextView
@@ -50,7 +53,8 @@
             android:gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="160dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"/>
 
 

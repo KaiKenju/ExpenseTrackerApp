@@ -3,6 +3,7 @@ package vn.edu.usth.expensetrackerfire;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,6 +76,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if(intent != null){
             String name = intent.getStringExtra("NAME_KEY");
             String email = intent.getStringExtra("EMAIL_KEY");
+            String personPhotoUrl = intent.getStringExtra("PROFILE_KEY");
+            if (personPhotoUrl != null) {
+                Uri personPhotoUri = Uri.parse(personPhotoUrl);
+                // Sử dụng Uri để hiển thị hoặc làm việc với hình ảnh theo nhu cầu của bạn
+                ImageView imgv = findViewById(R.id.profileImage);
+                Glide.with(this)
+                        .load(personPhotoUri)
+                        .into(imgv);
+            }
 
             // Find TextViews in your layout and set the name and email
             TextView nameTextView = findViewById(R.id.nameTV);

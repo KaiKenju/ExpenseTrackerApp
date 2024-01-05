@@ -14,12 +14,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +46,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-    private EditText mEmail, mPassword;
+    private EditText mEmail, mPassword, mName;
     private Button btnLogin, login_gg;
     private TextView mForgetPassword, mSignuphere;
     private ProgressDialog mDialog;
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // lấy token từ firebase trên gg
         login_gg = findViewById(R.id.btn_login_gg);
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.client_id))
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        //firebase account gg
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null) {
@@ -85,12 +88,14 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
             String personName = sharedPreferences.getString("NAME_KEY", "");
             String personEmail = sharedPreferences.getString("EMAIL_KEY", "");
+            String personPhotoUrl = sharedPreferences.getString("PROFILE_KEY", "");
 
             // Check data user in  SharedPreferences or not
             if (!TextUtils.isEmpty(personName) && !TextUtils.isEmpty(personEmail)) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("NAME_KEY", personName);
                 intent.putExtra("EMAIL_KEY", personEmail);
+                intent.putExtra("PROFILE_KEY", personPhotoUrl);
                 startActivity(intent);
             } else {
                 Toast.makeText(MainActivity.this, "Can't not retrieve data re-login", Toast.LENGTH_SHORT).show();
@@ -119,28 +124,56 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-//                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+////                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+////                                    startActivity(intent);
+//                                    //dành cho firebase
+//                                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+//                                    Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+//                                    intent.putExtra("NAME_KEY", personName);
+//                                    intent.putExtra("EMAIL_KEY", personEmail);
 //                                    startActivity(intent);
-                                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                                    Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                                    intent.putExtra("NAME_KEY", personName);
-                                    intent.putExtra("EMAIL_KEY", personEmail);
-                                    startActivity(intent);
+//
+//                                    // lưu trữ dữ liệu để cb re-login
+//                                    SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+//                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                                    editor.putString("NAME_KEY", personName);
+//                                    editor.putString("EMAIL_KEY", personEmail);
+//                                    editor.apply();
+//
+//                                    // Finish the current activity
+//                                    finish();
+                                    Uri personPhotoUri = account.getPhotoUrl();
+                                    if (personPhotoUri != null) {
+                                        String personPhotoUrl = personPhotoUri.toString();
 
-                                    // lưu trữ dữ liệu để cb re-login
-                                    SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString("NAME_KEY", personName);
-                                    editor.putString("EMAIL_KEY", personEmail);
-                                    editor.apply();
+                                        // Tạo Intent để chuyển dữ liệu đến HomeActivity
+                                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                                        Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                                        intent.putExtra("NAME_KEY", personName);
+                                        intent.putExtra("EMAIL_KEY", personEmail);
+                                        intent.putExtra("PROFILE_KEY", personPhotoUrl); // Gửi Uri hình ảnh qua Intent
 
-                                    // Finish the current activity
-                                    finish();
+                                        startActivity(intent);
 
+                                        // Lưu trữ dữ liệu để re-login
+                                        SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString("NAME_KEY", personName);
+                                        editor.putString("EMAIL_KEY", personEmail);
+                                        editor.putString("PROFILE_KEY", personPhotoUrl);
+                                        editor.apply();
+
+                                        // Kết thúc Activity hiện tại
+                                        finish();
+                                    } else {
+                                        // Trường hợp không có hình ảnh
+                                        Toast.makeText(MainActivity.this, "No profile picture available", Toast.LENGTH_SHORT).show();
+                                    }
 
                                 }else{
                                     Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
+
                             }
 
                         });
@@ -185,6 +218,8 @@ public class MainActivity extends AppCompatActivity {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
+
+
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email Required...");
                     return;
@@ -192,6 +227,23 @@ public class MainActivity extends AppCompatActivity {
                     mPassword.setError("Password Required...");
                     return;
                 }
+                // Kiểm tra email hợp lệ
+                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    mEmail.setError("Enter a valid email address");
+                    return;
+                }
+                // Kiểm tra độ dài tối thiểu cho mật khẩu
+                final int MIN_PASSWORD_LENGTH = 6;
+                if (password.length() < MIN_PASSWORD_LENGTH) {
+                    mPassword.setError("Password should be at least " + MIN_PASSWORD_LENGTH + " characters");
+                    return;
+                }
+                String passwordPattern = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).*$";
+                if (!password.matches(passwordPattern)) {
+                    mPassword.setError("Password should contain at least one digit, one letter, and one special character");
+                    return;
+                }
+
 
                 mDialog.setMessage("Processing...");
                 mDialog.show();
@@ -202,7 +254,25 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
 
                             mDialog.dismiss();
-                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+
+                            String email = mEmail.getText().toString().trim();
+
+                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                            intent.putExtra("EMAIL_KEY", email);
+                            startActivity(intent);
+
+                            // lưu trữ dữ liệu để cb re-login
+                            SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putString("EMAIL_KEY", email);
+                            editor.apply();
+                            finish();
+
+
+
+//                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                             Toast.makeText(getApplicationContext(), "Login Successful...", Toast.LENGTH_SHORT).show();
                         }else{
                             mDialog.dismiss();

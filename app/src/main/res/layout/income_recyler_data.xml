@@ -78,15 +78,6 @@
                     android:textStyle="bold"
                     android:id="@+id/date_txt_income"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:text="ITEMzzz"
-                    android:textColor="#B5B1B1"
-                    android:gravity="right"
-                    android:textSize="14dp"
-                    android:textStyle="bold"
-                    android:id="@+id/selected_category_textview"
-                    android:layout_height="wrap_content"/>
 
 
             </LinearLayout>

@@ -678,7 +678,7 @@ public class DashBoardFragment extends Fragment {
             TextView mAmount = mIncomeView.findViewById(R.id.amount_income_dash);
             String strAmount= String.valueOf(amount);
 
-            mAmount.setText(strAmount);
+            mAmount.setText("+$ " + strAmount);
 
         }
         public void setmIncomeDate(String date){
@@ -703,7 +703,7 @@ public class DashBoardFragment extends Fragment {
             TextView mAmount = mExpenseView.findViewById(R.id.amount_expense_dash);
             String strAmount= String.valueOf(amount);
 
-            mAmount.setText(strAmount);
+            mAmount.setText("-$ " + strAmount);
 
         }
         public void setmExpenseDate(String date){
