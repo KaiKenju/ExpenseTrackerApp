@@ -58,6 +58,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DashBoardFragment dashBoardFragment;
     private IncomeFragment incomeFragment;
     private ExpenseFragment expenseFragment;
+    private OcraFragment ocraFragment;
 
     private FirebaseAuth mAuth;
     Switch aSwitch;
@@ -151,6 +152,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         dashBoardFragment = new DashBoardFragment();
         incomeFragment = new IncomeFragment();
         expenseFragment = new ExpenseFragment();
+        ocraFragment = new OcraFragment();
 
         setFragment(dashBoardFragment);
 
@@ -169,6 +171,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         return true;
                     case R.id.expense:
                         setFragment(expenseFragment);
+                        bottomNavigationView.setItemBackgroundResource(R.color.expense_color);
+                        return true;
+                    case R.id.ocra:
+                        setFragment(ocraFragment);
                         bottomNavigationView.setItemBackgroundResource(R.color.expense_color);
                         return true;
 
@@ -209,6 +215,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.expense:
                 fragment = new ExpenseFragment();
+                break;
+            case R.id.ocra:
+                fragment = new OcraFragment();
                 break;
             case R.id.logout:
                 mAuth.signOut();

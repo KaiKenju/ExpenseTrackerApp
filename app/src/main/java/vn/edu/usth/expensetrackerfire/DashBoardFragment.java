@@ -79,6 +79,7 @@ public class DashBoardFragment extends Fragment {
 
     private double totalSum = 0;
     private double totalSum_ex = 0;
+    private double total_balance = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -211,7 +212,6 @@ public class DashBoardFragment extends Fragment {
                 updateTotalBalance();
                 ChartPie();
                 ChartBar();
-
             }
 
             @Override
@@ -273,9 +273,13 @@ public class DashBoardFragment extends Fragment {
     }
 
     private void ChartBar(){
+        total_balance = totalSum - totalSum_ex;
+
         ArrayList<BarEntry> barEntries = new ArrayList<>();
         barEntries.add(new BarEntry(0, (float) totalSum, "Income"));
         barEntries.add(new BarEntry(1, (float) totalSum_ex, "Expense"));
+        barEntries.add(new BarEntry(2, (float) total_balance, "Balance"));
+
 
         BarDataSet barDataSet = new BarDataSet(barEntries,"");
 
@@ -291,6 +295,7 @@ public class DashBoardFragment extends Fragment {
         ArrayList<String> labels = new ArrayList<>();
         labels.add("Income");
         labels.add("Expense");
+        labels.add("Balance");
 
         BarData barData = new BarData(barDataSet);
         barData.setBarWidth(0.5f); // Set độ rộng của cột

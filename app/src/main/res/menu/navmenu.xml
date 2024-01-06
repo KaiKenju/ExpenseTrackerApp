@@ -20,4 +20,7 @@
     <item android:id="@+id/mode_color"
         android:title="Mode"
         android:icon="@drawable/logout"/>
+    <item android:id="@+id/ocra"
+        android:title="OCR"
+        android:icon="@drawable/logout"/>
 </menu>

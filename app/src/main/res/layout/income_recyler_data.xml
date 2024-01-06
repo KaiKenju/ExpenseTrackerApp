@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
+    android:elevation="5dp"
+    style="@style/SCREEN_inside"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="5dp"
     android:elevation="5dp"
     android:id="@+id/carrr"
-    android:backgroundTint="#1a191e"
     android:layout_margin="5dp"
     android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        style="@style/SCREEN_inside"
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="wrap_content"
@@ -39,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:text="Type"
                     android:layout_marginBottom="5dp"
-                    android:textColor="@color/end"
+                    style="@style/TEXT"
                     android:textSize="17dp" />
                 <TextView
                         android:layout_width="match_parent"
@@ -47,7 +56,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
                         android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="#B5B1B1"
+                        style="@style/TEXT_nhat"
                         android:layout_below="@+id/type_txt_income"
                         android:id="@+id/note_txt_income"
                         android:layout_height="wrap_content"/>
@@ -76,7 +85,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:text="6,June 2028"
-                    android:textColor="#B5B1B1"
+                    style="@style/TEXT_nhat"
                     android:gravity="right"
                     android:textSize="14dp"
                     android:textStyle="bold"
@@ -87,15 +96,9 @@
             </LinearLayout>
 
 
-
-
-
-
-
-
-
         </LinearLayout>
     </LinearLayout>
 
 
 </androidx.cardview.widget.CardView>
+</LinearLayout>

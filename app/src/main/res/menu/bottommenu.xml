@@ -12,4 +12,7 @@
     <item android:id="@+id/expense"
         android:title="Expense"
         android:icon="@drawable/expense"/>
+    <item android:id="@+id/ocra"
+        android:title="OCR"
+        android:icon="@drawable/dashboard"/>
 </menu>

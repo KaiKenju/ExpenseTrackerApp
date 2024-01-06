@@ -31,4 +31,7 @@
     <style name="TEXT_nhat">
         <item name ="android:textColor">#302E2E</item>
     </style>
+    <style name="IMAGE">
+        <item name ="android:textColor">#311685</item>
+    </style>
 </resources>
