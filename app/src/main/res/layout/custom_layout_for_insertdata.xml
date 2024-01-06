@@ -18,12 +18,22 @@
                 android:layout_gravity="center"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
-                <TextView
+                <ImageView
+                    android:id="@+id/btnCancel"
                     android:layout_width="wrap_content"
+                    android:src="@drawable/back_data"
+                    android:layout_gravity="left|center"
+                    android:scaleX="1.5"
+                    android:layout_marginLeft="30dp"
+                    android:scaleY="1.5"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
                     android:text="Details"
                     android:padding="5dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="150dp"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="20dp"
                     android:textColor="@color/end"
                     android:textSize="25dp"
@@ -113,48 +123,48 @@
                     android:textColor="@color/end"
                     android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/timestamp_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="6h30p"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:textColor="#B5B1B1"
-                    android:textStyle="bold" />
-                <Spinner
-                    android:id="@+id/category_spinner"
-                    android:layout_width="wrap_content"
-                    android:background="@color/black"
-                    android:layout_height="wrap_content" />
+<!--                <TextView-->
+<!--                    android:id="@+id/timestamp_text_view"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="right"-->
+<!--                    android:text="6h30p"-->
+<!--                    android:textAppearance="?android:textAppearanceSmall"-->
+<!--                    android:textColor="#B5B1B1"-->
+<!--                    android:textStyle="bold" />-->
+<!--                <Spinner-->
+<!--                    android:id="@+id/category_spinner"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:background="@color/black"-->
+<!--                    android:layout_height="wrap_content" />-->
 
-                <TextView
-                    android:id="@+id/selected_category_textview"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/end"
-                    android:layout_height="wrap_content"
-                    android:text="Selected Category: " />
+<!--                <TextView-->
+<!--                    android:id="@+id/selected_category_textview"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:textColor="@color/end"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Selected Category: " />-->
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
-                    <Button
-                        android:id="@+id/btnCancel"
-                        android:layout_width="match_parent"
-                        android:text="Cancel"
-                        android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@android:color/black"
-                        android:background="#BF0D25"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <Button-->
+<!--                        android:id="@+id/btnCancel"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:text="Cancel"-->
+<!--                        android:textAppearance="?android:textAppearanceMedium"-->
+<!--                        android:textColor="@android:color/black"-->
+<!--                        android:background="#BF0D25"-->
+<!--                        android:layout_height="wrap_content"/>-->
+<!--                </RelativeLayout>-->
 
                 <RelativeLayout
                     android:layout_width="0dp"

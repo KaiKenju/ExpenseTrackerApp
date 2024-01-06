@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -58,16 +60,54 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private ExpenseFragment expenseFragment;
 
     private FirebaseAuth mAuth;
+    Switch aSwitch;
+    boolean nightMODE;
+    SharedPreferences shared;
+    SharedPreferences.Editor edito;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         toolbar.setTitle("Expense Manager");
         setSupportActionBar(toolbar);
+
+        // mode light. night
+//        getSupportActionBar().hide(); // ẩn thanh header
+        aSwitch = findViewById(R.id.switcher);
+        //save mode if the exite app
+        shared = getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        nightMODE = shared.getBoolean("night", false); // light mode default
+
+        if(nightMODE){
+            aSwitch.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        aSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(nightMODE){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                    edito = shared.edit();
+//                    edito.putBoolean("night", false);
+                    nightMODE = false;
+                }else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                    edito = shared.edit();
+//                    edito.putBoolean("night", true);
+                    nightMODE = true;
+                }
+                edito = shared.edit();
+                edito.putBoolean("night", nightMODE);
+                edito.apply();
+            }
+        });
+    ////
+
+
+
 
         //logout
         mAuth = FirebaseAuth.getInstance();

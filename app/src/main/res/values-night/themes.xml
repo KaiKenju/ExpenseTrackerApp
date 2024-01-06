@@ -15,4 +15,20 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!--   light mode/ current light -->
+    <style name="SCREEN">
+        <item name ="android:background">@color/end</item>
+    </style>
+    <style name="SCREEN_inside">
+        <item name ="android:background">#F0FFFF</item>
+    </style>
+
+    <!--  Text Background  -->
+    <style name="TEXT">
+        <item name ="android:textColor">@color/black</item>
+    </style>
+    <style name="TEXT_nhat">
+        <item name ="android:textColor">#302E2E</item>
+    </style>
 </resources>

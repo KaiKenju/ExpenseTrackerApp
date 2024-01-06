@@ -229,9 +229,45 @@ public class IncomeFragment extends Fragment {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                // Inflate the custom layout for the dialog
+                View customView = getLayoutInflater().inflate(R.layout.custom_dialog_layout_de, null);
+                builder.setView(customView);
 
-                mIncomeDatabase.child(post_key).removeValue();
+                // Create the AlertDialog
+                AlertDialog cancelDialog = builder.create();
+
+                // Find buttons in the custom dialog layout
+                Button btnYes = customView.findViewById(R.id.btnYes);
+                Button btnNo = customView.findViewById(R.id.btnNo);
+
+                // Set click listeners for Yes and No buttons
+                btnYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Perform cancellation action
+                        cancelDialog.dismiss();
+                        mIncomeDatabase.child(post_key).removeValue();
+                        dialog.dismiss();
+                        // Additional actions if needed
+                    }
+                });
+
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Dismiss the dialog without taking any action
+                        cancelDialog.dismiss();
+                        // Additional actions if needed
+                    }
+                });
+
+                // Show the custom dialog
+                cancelDialog.show();
+
+//                mIncomeDatabase.child(post_key).removeValue();
                 dialog.dismiss();
+
             }
         });
         dialog.show();

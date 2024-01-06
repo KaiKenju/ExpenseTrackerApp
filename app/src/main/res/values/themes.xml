@@ -21,4 +21,21 @@
     <style name="DrawerIconStyle" parent = "Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@android:color/white</item>
     </style>
+
+        <!--   dark mode/ current dark -->
+    <style name="SCREEN">
+        <item name ="android:background">#121212</item>
+    </style>
+    <style name="SCREEN_inside">
+        <item name ="android:background">#1a191e</item>
+    </style>
+
+        <!--  Text Background  -->
+    <style name="TEXT">
+        <item name ="android:textColor">#edf8f8</item>
+    </style>
+    <style name="TEXT_nhat">
+        <item name ="android:textColor">#B5B1B1</item>
+    </style>
+
 </resources>

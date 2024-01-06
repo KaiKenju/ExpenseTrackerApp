@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#121212"
+    style="@style/SCREEN"
     tools:context=".DashBoardFragment">
     <ScrollView
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="#1a191e"
+                                style="@style/SCREEN_inside"
                                 android:orientation="vertical"
                                 android:padding="20dp">
 
@@ -43,7 +43,7 @@
                                     android:layout_marginRight="25dp"
                                     android:gravity="center"
                                     android:text="TOTAL BALANCE"
-                                    android:textColor="#B5B1B1" />
+                                    style="@style/TEXT_nhat" />
 
                                 <TextView
                                     android:id="@+id/total_balance"
@@ -52,7 +52,7 @@
                                     android:layout_margin="5dp"
                                     android:gravity="center"
                                     android:text="1000"
-                                    android:textColor="@color/white"
+                                    style="@style/TEXT"
                                     android:textSize="30dp" />
                             </LinearLayout>
 
@@ -64,19 +64,22 @@
                             android:layout_width="match_parent"
                             app:cardElevation="5dp"
                             android:elevation="10dp"
-                            android:backgroundTint="#121212"
+                            style="@style/SCREEN"
                             android:layout_height="wrap_content">
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:orientation="horizontal"
-                                android:layout_margin="5dp"
-                                android:background="#121212"
+
+                                style="@style/SCREEN"
                                 android:layout_height="wrap_content">
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:orientation="vertical"
-                                    android:layout_margin="5dp"
-                                    android:background="#1a191e"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginRight="5dp"
+                                    style="@style/SCREEN_inside"
                                     android:layout_height="wrap_content">
                                     <ImageView
                                         android:layout_width="wrap_content"
@@ -87,7 +90,7 @@
                                         android:layout_height="wrap_content"/>
                                     <TextView
                                         android:layout_width="wrap_content"
-                                        android:textColor="#B5B1B1"
+                                        style="@style/TEXT_nhat"
                                         android:layout_marginLeft="35dp"
                                         android:text="TOTAL INCOME"
                                         android:layout_marginBottom="5dp"
@@ -97,7 +100,7 @@
                                         android:id="@+id/income_set_result"
                                         android:layout_width="wrap_content"
                                         android:textAppearance="?android:textAppearanceLarge"
-                                        android:textColor="@color/end"
+                                        style="@style/TEXT"
                                         android:text="000.00"
                                         android:layout_marginLeft="25dp"
                                         android:layout_marginBottom="10dp"
@@ -107,8 +110,8 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:orientation="vertical"
-                                    android:background="#1a191e"
-                                    android:layout_marginRight="5dp"
+                                    style="@style/SCREEN_inside"
+                                    android:layout_marginRight="10dp"
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="20dp"
                                     android:layout_marginBottom="5dp"
@@ -124,7 +127,7 @@
 
                                     <TextView
                                         android:layout_width="wrap_content"
-                                        android:textColor="#B5B1B1"
+                                        style="@style/TEXT_nhat"
                                         android:layout_marginLeft="35dp"
                                         android:text="TOTAL EXPENSE"
                                         android:layout_marginBottom="5dp"
@@ -134,7 +137,7 @@
                                         android:id="@+id/expense_set_result"
                                         android:layout_width="wrap_content"
                                         android:textAppearance="?android:textAppearanceLarge"
-                                        android:textColor="@color/end"
+                                        style="@style/TEXT"
                                         android:text="000.00"
                                         android:layout_marginLeft="30dp"
                                         android:layout_marginBottom="10dp"
@@ -176,7 +179,7 @@
                                             android:text="Income Shortcut"
                                             android:textAppearance="?android:textAppearanceLarge"
                                             android:padding="10dp"
-                                            android:textColor="@color/end"
+                                            style="@style/TEXT"
                                             android:layout_height="wrap_content"/>
                                     </LinearLayout>
 
@@ -199,7 +202,7 @@
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:text="Expense Shortcut"
-                                            android:textColor="@color/end"
+                                            style="@style/TEXT"
                                             android:textAppearance="?android:textAppearanceLarge"
                                             android:padding="10dp"
                                             android:layout_height="wrap_content"/>
@@ -225,14 +228,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:text="Overview"
-                android:textColor="@color/white"
+                style="@style/TEXT"
                 android:textSize="35dp"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:layout_width="match_parent"
                 android:text="Pie Chart"
-                android:textColor="@color/white"
+                style="@style/TEXT"
                 android:textSize="20dp"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"/>
@@ -251,7 +254,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:text="Bar Chart"
-                    android:textColor="@color/white"
+                    style="@style/TEXT"
                     android:textSize="20dp"
                     android:layout_margin="10dp"
                     android:layout_height="wrap_content"/>

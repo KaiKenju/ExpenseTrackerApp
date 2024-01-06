@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -380,28 +381,28 @@ public class DashBoardFragment extends Fragment {
         EditText edtNote = myviewm.findViewById(R.id.note_edt);
 
         Button btnSave = myviewm.findViewById(R.id.btnSave);
-        Button btnCancel = myviewm.findViewById(R.id.btnCancel);
+        ImageView btnCancel = myviewm.findViewById(R.id.btnCancel);
         //spinner
-        Spinner categorySpinner = myviewm.findViewById(R.id.category_spinner);
-
-        ArrayAdapter adapter = new ArrayAdapter<>(requireContext(), R.layout.custome_layout_spinner, categories);
-        adapter.setDropDownViewResource(R.layout.custome_spinner_dropdown);
-        categorySpinner.setAdapter(adapter);
-        // select item
-        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                String selectedCategory = categories[position]; // Get the selected category
-                TextView selectedCategoryTextView = myviewm.findViewById(R.id.selected_category_textview);
-                selectedCategoryTextView.setText("Selected Category: " + selectedCategory); // Update TextView
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // Handle no selection if needed
-            }
-        });
+//        Spinner categorySpinner = myviewm.findViewById(R.id.category_spinner);
+//
+//        ArrayAdapter adapter = new ArrayAdapter<>(requireContext(), R.layout.custome_layout_spinner, categories);
+//        adapter.setDropDownViewResource(R.layout.custome_spinner_dropdown);
+//        categorySpinner.setAdapter(adapter);
+//        // select item
+//        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+//                String selectedCategory = categories[position]; // Get the selected category
+//                TextView selectedCategoryTextView = myviewm.findViewById(R.id.selected_category_textview);
+//                selectedCategoryTextView.setText("Selected Category: " + selectedCategory); // Update TextView
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//                // Handle no selection if needed
+//            }
+//        });
 
 
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -521,7 +522,7 @@ public class DashBoardFragment extends Fragment {
         EditText note = myview.findViewById(R.id.note_edt);
 
         Button btnSave = myview.findViewById(R.id.btnSave);
-        Button btnCancel = myview.findViewById(R.id.btnCancel);
+        ImageView btnCancel = myview.findViewById(R.id.btnCancel);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
