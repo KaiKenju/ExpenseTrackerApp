@@ -42,7 +42,7 @@
                                     android:layout_marginTop="25dp"
                                     android:layout_marginRight="25dp"
                                     android:gravity="center"
-                                    android:text="TOTAL BALANCE"
+                                    android:text="@string/totalbalance"
                                     style="@style/TEXT_nhat" />
 
                                 <TextView
@@ -92,7 +92,7 @@
                                         android:layout_width="wrap_content"
                                         style="@style/TEXT_nhat"
                                         android:layout_marginLeft="35dp"
-                                        android:text="TOTAL INCOME"
+                                        android:text="@string/totalincome"
                                         android:layout_marginBottom="5dp"
                                         android:layout_marginTop="5dp"
                                         android:layout_height="wrap_content"/>
@@ -129,7 +129,7 @@
                                         android:layout_width="wrap_content"
                                         style="@style/TEXT_nhat"
                                         android:layout_marginLeft="35dp"
-                                        android:text="TOTAL EXPENSE"
+                                        android:text="@string/totalexpense"
                                         android:layout_marginBottom="5dp"
                                         android:layout_marginTop="5dp"
                                         android:layout_height="wrap_content"/>
@@ -176,7 +176,7 @@
                                             android:layout_height="wrap_content"/>
                                         <TextView
                                             android:layout_width="match_parent"
-                                            android:text="Income Shortcut"
+                                            android:text="@string/incomeshort"
                                             android:textAppearance="?android:textAppearanceLarge"
                                             android:padding="10dp"
                                             style="@style/TEXT"
@@ -201,7 +201,7 @@
                                             android:layout_height="wrap_content"/>
                                         <TextView
                                             android:layout_width="match_parent"
-                                            android:text="Expense Shortcut"
+                                            android:text="@string/expenseshort"
                                             style="@style/TEXT"
                                             android:textAppearance="?android:textAppearanceLarge"
                                             android:padding="10dp"
@@ -227,7 +227,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:text="Overview"
+                android:text="@string/overview"
                 style="@style/TEXT"
                 android:textSize="35dp"
                 android:layout_margin="10dp"
@@ -263,6 +263,10 @@
                     android:layout_width="match_parent"
                     android:layout_marginBottom="50dp"
                     android:layout_height="400dp"/>
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/bar_chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
 
         </LinearLayout>

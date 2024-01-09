@@ -1,6 +1,10 @@
 package vn.edu.usth.expensetrackerfire;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -53,7 +57,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import vn.edu.usth.expensetrackerfire.model.Data;
 
@@ -96,7 +103,7 @@ public class DashBoardFragment extends Fragment {
         mIncomeDatabase.keepSynced(true);
         mExpenseDatabase.keepSynced(true);
 
-
+        loadLocale();
         //connect
         fab_main_btn = myview.findViewById(R.id.fb_main_plus_btn);
         fab_income_btn = myview.findViewById(R.id.income_Ft_btn);
@@ -238,6 +245,18 @@ public class DashBoardFragment extends Fragment {
 
         return myview;
     }
+    private void loadLocale() {
+        SharedPreferences prefs = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
+        setLocale(language);
+    }
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+    }
     private void updateTotalBalance() {
         double totalBalanceValue = Math.round((totalSum - totalSum_ex)*100.0)/100.0;
 
@@ -323,6 +342,8 @@ public class DashBoardFragment extends Fragment {
 
         barChart.invalidate();
     }
+
+
 
     //float button animation
     private void ftAnimation(){
@@ -497,19 +518,7 @@ public class DashBoardFragment extends Fragment {
         dialog.show();
 
     }
-    private void openIncomeFragment(String selectedCategory) {
-        IncomeFragment incomeFragment = new IncomeFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("SELECTED_CATEGORY", selectedCategory);
-        incomeFragment.setArguments(bundle);
 
-        // Navigate to IncomeFragment
-        getParentFragmentManager()
-                .beginTransaction()
-                .replace(R.id.carrr, incomeFragment)
-                .addToBackStack(null) // If you want to add to the back stack
-                .commit();
-    }
 
     public void expenseDataInsert(){
         AlertDialog.Builder mydialog = new AlertDialog.Builder(getActivity());

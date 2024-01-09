@@ -10,5 +10,28 @@
     <string name="client_id">78667086404-0akvmpkb6rtbcqiehuledqpfe0jnuek0.apps.googleusercontent.com</string>
 
     <string name="text">ExpenseTrackerFire ExpenseTrackerFire ExpenseTrackerFire ExpenseTrackerFire ExpenseTrackerFire ExpenseTrackerFire ExpenseTrackerFire ExpenseTrackerFire </string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="hintemail">Enter your email</string>
+    <string name="welback">Welcome back! Please enter your details.</string>
+    <string name="daudong">Log in to your account</string>
+    <string name="forgetpass"> Forget Password?</string>
+
+    <string name="login">Login</string>
+    <string name="signup">Do not have account? Sign up here</string>
+    <string name="changeLang">Change Language</string>
+
+    <string name="incomeshort">Income Shortcut</string>
+    <string name="expenseshort">Expense Shortcut</string>
+    <string name="totalbalance">TOTAL BALANCE</string>
+    <string name="totalincome">TOTAL INCOME</string>
+    <string name="totalexpense">TOTAL EXPENSE</string>
+    <string name="overview">Overview</string>
+    <string name="allincome">All Income</string>
+    <string name="allexpense">All Expense</string>
+
+
+
+
 
 </resources>

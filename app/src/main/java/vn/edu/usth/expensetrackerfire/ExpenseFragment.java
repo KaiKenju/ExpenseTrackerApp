@@ -1,6 +1,9 @@
 package vn.edu.usth.expensetrackerfire;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.media.Image;
 import android.os.Bundle;
 
@@ -32,6 +35,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import vn.edu.usth.expensetrackerfire.model.Data;
 
@@ -59,6 +63,7 @@ public class ExpenseFragment extends Fragment {
         // Inflate the layout for this fragment
         View myview = inflater.inflate(R.layout.fragment_expense, container, false);
 
+        loadLocale();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
         String uid = mUser.getUid();
@@ -103,6 +108,19 @@ public class ExpenseFragment extends Fragment {
         });
 
         return myview;
+    }
+    // save language
+    private void loadLocale() {
+        SharedPreferences prefs = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
+        setLocale(language);
+    }
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
     }
 
     @Override
