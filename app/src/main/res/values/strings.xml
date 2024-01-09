@@ -21,14 +21,38 @@
     <string name="signup">Do not have account? Sign up here</string>
     <string name="changeLang">Change Language</string>
 
-    <string name="incomeshort">Income Shortcut</string>
-    <string name="expenseshort">Expense Shortcut</string>
+    <string name="incomeshort">Income</string>
+    <string name="expenseshort">Expense</string>
     <string name="totalbalance">TOTAL BALANCE</string>
     <string name="totalincome">TOTAL INCOME</string>
     <string name="totalexpense">TOTAL EXPENSE</string>
-    <string name="overview">Overview</string>
+    <string name="overview">Statistics</string>
     <string name="allincome">All Income</string>
     <string name="allexpense">All Expense</string>
+    <string name="manager">Expense Management</string>
+    <string name="homeincome">Income</string>
+    <string name="homeexpense">Expense</string>
+
+
+    <string name="recent">Recent Transaction</string>
+    <string name="dashbor">Dash Board</string>
+    <string name="logoutt">Log out</string>
+    <string name="lightmode">Light Mode</string>
+
+    <string name="create">Create an account</string>
+    <string name="namee">CName</string>
+    <string name="namee_hint">Enter your name</string>
+    <string name="reg">Register</string>
+    <string name="already">Already have account ? Sign in here</string>
+
+
+
+
+
+
+
+
+
 
 
 

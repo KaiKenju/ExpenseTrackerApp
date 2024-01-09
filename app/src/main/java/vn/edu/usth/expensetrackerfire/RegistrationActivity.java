@@ -1,9 +1,11 @@
 package vn.edu.usth.expensetrackerfire;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.checkerframework.checker.units.qual.m;
 
+import java.util.Locale;
+
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText mEmail, mPassword, mName;
@@ -42,8 +46,22 @@ public class RegistrationActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDialog = new ProgressDialog(this);
         registration();
+        loadLocale();
 
 
+    }
+    private void loadLocale() {
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
+        setLocale(language);
+    }
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+//        getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
 

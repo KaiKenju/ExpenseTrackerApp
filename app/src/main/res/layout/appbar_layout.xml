@@ -12,6 +12,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"
+            app:title="@string/manager"
             android:layout_width="match_parent"
             app:titleTextColor="@android:color/white"
             android:background="@drawable/editext_background_header"

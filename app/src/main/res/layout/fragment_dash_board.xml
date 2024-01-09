@@ -152,6 +152,7 @@
 
                         </androidx.cardview.widget.CardView>
 
+
                         <androidx.coordinatorlayout.widget.CoordinatorLayout
                             android:layout_below="@id/abc2"
                             android:layout_width="match_parent"
@@ -165,6 +166,13 @@
                                     android:orientation="vertical"
                                     android:layout_marginTop="10dp"
                                     android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:text="@string/recent"
+                                        android:textAppearance="?android:textAppearanceMedium"
+                                        android:padding="10dp"
+                                        style="@style/TEXT"
+                                        android:layout_height="wrap_content"/>
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:orientation="horizontal"
@@ -177,7 +185,7 @@
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:text="@string/incomeshort"
-                                            android:textAppearance="?android:textAppearanceLarge"
+                                            android:textAppearance="?android:textAppearanceMedium"
                                             android:padding="10dp"
                                             style="@style/TEXT"
                                             android:layout_height="wrap_content"/>
@@ -186,7 +194,7 @@
                                     <androidx.recyclerview.widget.RecyclerView
                                         android:layout_width="match_parent"
                                         android:id="@+id/recycler_income_dash"
-                                        android:layout_height="130dp">
+                                        android:layout_height="110dp">
 
                                     </androidx.recyclerview.widget.RecyclerView>
 
@@ -203,14 +211,14 @@
                                             android:layout_width="match_parent"
                                             android:text="@string/expenseshort"
                                             style="@style/TEXT"
-                                            android:textAppearance="?android:textAppearanceLarge"
+                                            android:textAppearance="?android:textAppearanceMedium"
                                             android:padding="10dp"
                                             android:layout_height="wrap_content"/>
                                     </LinearLayout>
                                     <androidx.recyclerview.widget.RecyclerView
                                         android:layout_width="match_parent"
                                         android:id="@+id/recycler_expense_dash"
-                                        android:layout_height="150dp">
+                                        android:layout_height="120dp">
 
                                     </androidx.recyclerview.widget.RecyclerView>
 
@@ -229,14 +237,7 @@
                 android:layout_width="match_parent"
                 android:text="@string/overview"
                 style="@style/TEXT"
-                android:textSize="35dp"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:text="Pie Chart"
-                style="@style/TEXT"
-                android:textSize="20dp"
+                android:textAppearance="?android:textAppearanceMedium"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"/>
 
@@ -251,13 +252,6 @@
                     android:id="@+id/pie_chart"
                     android:layout_width="match_parent"
                     android:layout_height="400dp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:text="Bar Chart"
-                    style="@style/TEXT"
-                    android:textSize="20dp"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content"/>
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/bar_chart"
                     android:layout_width="match_parent"

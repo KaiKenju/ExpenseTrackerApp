@@ -27,8 +27,24 @@
     <string name="totalbalance">TỔNG SỐ DƯ</string>
     <string name="totalincome">TỔNG THU NHẬP</string>
     <string name="totalexpense">TỔNG CHI PHÍ</string>
-    <string name="overview">Tổng quan</string>
+    <string name="overview">Thống Kê</string>
 
     <string name="allincome">Doanh thu</string>
     <string name="allexpense">Chi trả</string>
+    <string name="manager">Quản lý chi tiêu</string>
+
+    <string name="homeincome">Thu nhập</string>
+    <string name="homeexpense">Chi phí</string>
+
+    <string name="recent">Giao dịch gần đây</string>
+    <string name="dashbor">Bảng điều khiển</string>
+    <string name="logoutt">Đăng xuất</string>
+    <string name="lightmode">Chế độ ánh sáng</string>
+
+    <string name="create">Tạo tài khoản</string>
+    <string name="namee">Tên</string>
+    <string name="namee_hint">Nhập tên của bạn</string>
+    <string name="reg">Đăng ký</string>
+    <string name="already">Đã có tài khoản rồi? Đăng nhập tại đây</string>
+
 </resources>

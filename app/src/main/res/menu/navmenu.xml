@@ -2,25 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/dashboard"
-        android:title="Dash Board"
+        android:title="@string/dashbor"
         android:icon="@drawable/dashboard"/>
 
     <item
         android:id="@+id/income"
-        android:title="Income"
+        android:title="@string/homeincome"
         android:icon="@drawable/income"/>
 
     <item
         android:id="@+id/expense"
-        android:title="Expense"
+        android:title="@string/homeexpense"
         android:icon="@drawable/expense"/>
     <item android:id="@+id/logout"
-        android:title="Log out"
+        android:title="@string/logoutt"
         android:icon="@drawable/logout"/>
     <item android:id="@+id/mode_color"
-        android:title="Mode"
-        android:icon="@drawable/logout"/>
+        android:title="@string/lightmode"
+        android:icon="@drawable/light_mode"/>
     <item android:id="@+id/ocra"
         android:title="OCR"
-        android:icon="@drawable/logout"/>
+        android:icon="@drawable/ocr_img"/>
 </menu>

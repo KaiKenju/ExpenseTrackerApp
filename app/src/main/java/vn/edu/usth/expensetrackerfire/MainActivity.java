@@ -23,10 +23,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +50,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import org.intellij.lang.annotations.Language;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -53,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private EditText mEmail, mPassword, mName;
-    private Button btnLogin, login_gg;
+    private Button btnLogin;
+    private ImageView login_gg;
     private TextView mForgetPassword, mSignuphere;
     private ProgressDialog mDialog;
     //firebase
@@ -95,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // change language
-        Button changeLang = findViewById(R.id.changeMyLang);
+        ImageView changeLang = findViewById(R.id.changeMyLang);
+
         changeLang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
                 showChangeLanguage();
             }
         });
+
+
+
+
 
 
         //firebase account gg
@@ -160,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog mDialog = mBuilder.create();
         mDialog.show();
     }
+
     private void setLocale(String lang ){
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);

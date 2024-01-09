@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#121212"
+    style="@style/SCREEN_inside"
     android:layout_height="match_parent">
 
     <ScrollView
@@ -51,7 +51,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Title"
-                    android:textColor="#B5B1B1"
+                    style="@style/TEXT_nhat"
                     android:layout_height="wrap_content"/>
                 <EditText
                     android:id="@+id/type_edt"
@@ -59,7 +59,7 @@
                     android:hint="type"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    android:textColor="@color/end"
+                    style="@style/TEXT"
                     android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -74,7 +74,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:text="Amount"
-                        android:textColor="#B5B1B1"
+                    style="@style/TEXT_nhat"
                         android:layout_height="wrap_content"/>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                         android:layout_marginTop="6dp"
                         android:textSize="20dp"
                         android:layout_marginRight="5dp"
-                        android:textColor="@color/end"
+                        style="@style/TEXT"
                         android:layout_height="wrap_content"/>
                     <EditText
                         android:id="@+id/amount_edt"
@@ -94,7 +94,7 @@
                         android:hint="amount"
                         android:textSize="20dp"
                         android:textStyle="bold"
-                        android:textColor="@color/end"
+                        style="@style/TEXT"
                         android:layout_marginTop="5dp"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -112,7 +112,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Note"
-                    android:textColor="#B5B1B1"
+                    style="@style/TEXT_nhat"
                     android:layout_height="wrap_content"/>
                 <EditText
                     android:id="@+id/note_edt"
@@ -120,7 +120,7 @@
                     android:hint="note"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    android:textColor="@color/end"
+                    style="@style/TEXT"
                     android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"/>
 
@@ -150,8 +150,8 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
+                    android:layout_margin="30dp"
+                    android:gravity="right"
                     android:layout_height="wrap_content">
                     <Button
                         android:id="@+id/btnUpdate"

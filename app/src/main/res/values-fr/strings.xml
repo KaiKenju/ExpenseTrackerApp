@@ -23,7 +23,7 @@
     <string name="changeLang">Changer la langue</string>
 
     <string name="incomeshort">Revenu</string>
-    <string name="expenseshort">Raccourci de dépenses</string>
+    <string name="expenseshort">Dépenses</string>
     <string name="totalbalance">SOLDE TOTAL</string>
     <string name="totalincome">REVENU TOTAL</string>
     <string name="totalexpense">DÉPENSES TOTALES</string>
@@ -31,4 +31,19 @@
 
     <string name="allincome">Tous les revenus</string>
     <string name="allexpense">Toutes les dépenses</string>
+    <string name="manager">Gestion des dépenses</string>
+
+    <string name="homeincome">Revenu</string>
+    <string name="homeexpense">Dépenses</string>
+    <string name="recent">Transactions récentes</string>
+
+    <string name="dashbor">Tableau de bord</string>
+    <string name="logoutt">Déconnexion</string>
+    <string name="lightmode">Mode lumière</string>
+
+    <string name="create">Créer un compte</string>
+    <string name="namee">CName</string>
+    <string name="namee_hint">Entrez votre nom</string>
+    <string name="reg">S\'inscrire</string>
+    <string name="already">Vous avez déjà un compte ? Connectez-vous ici</string>
 </resources>

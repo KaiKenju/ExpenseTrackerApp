@@ -18,6 +18,8 @@
     <color name="date_color">#FF270648</color>
     <color name="expense_amount">#FFEC1D06</color>
 
+    <color name="lightTextColor">@android:color/white</color>
+    <color name="darkTextColor">@android:color/black</color>
 
 
 

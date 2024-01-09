@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#121212"
+    style="@style/SCREEN_inside"
     android:layout_height="match_parent">
 
     <ScrollView
@@ -23,17 +23,27 @@
                     android:layout_width="wrap_content"
                     android:src="@drawable/back_data"
                     android:layout_gravity="left|center"
-                    android:scaleX="1.5"
+                    android:scaleX="1.25"
                     android:layout_marginLeft="30dp"
-                    android:scaleY="1.5"
+                    android:scaleY="1.25"
                     android:layout_height="wrap_content"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/btnCancel"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_gravity="left|center"-->
+<!--                    android:layout_marginLeft="25dp"-->
+<!--                    android:text="&lt;"-->
+<!--                    style="@style/TEXT"-->
+<!--                    android:scaleY="1.0"-->
+<!--                    android:textSize="35dp"-->
+<!--                    android:layout_height="wrap_content"/>-->
                 <TextView
                     android:layout_width="match_parent"
                     android:text="Details"
                     android:padding="5dp"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginBottom="20dp"
                     android:textColor="@color/end"
                     android:textSize="25dp"
@@ -51,7 +61,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Title"
-                    android:textColor="#B5B1B1"
+                    style="@style/TEXT_nhat"
                     android:layout_height="wrap_content"/>
                 <EditText
                     android:id="@+id/type_edt"
@@ -59,7 +69,7 @@
                     android:hint="type"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    android:textColor="@color/end"
+                    style="@style/TEXT"
                     android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -74,7 +84,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Amount"
-                    android:textColor="#B5B1B1"
+                    style="@style/TEXT_nhat"
                     android:layout_height="wrap_content"/>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,7 +96,7 @@
                         android:layout_marginTop="6dp"
                         android:textSize="20dp"
                         android:layout_marginRight="5dp"
-                        android:textColor="@color/end"
+                        style="@style/TEXT"
                         android:layout_height="wrap_content"/>
                     <EditText
                         android:id="@+id/amount_edt"
@@ -94,7 +104,7 @@
                         android:hint="amount"
                         android:textSize="20dp"
                         android:textStyle="bold"
-                        android:textColor="@color/end"
+                        style="@style/TEXT"
                         android:layout_marginTop="5dp"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -112,7 +122,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Note"
-                    android:textColor="#B5B1B1"
+                    style="@style/TEXT_nhat"
                     android:layout_height="wrap_content"/>
                 <EditText
                     android:id="@+id/note_edt"
@@ -120,7 +130,7 @@
                     android:hint="note"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    android:textColor="@color/end"
+                    style="@style/TEXT"
                     android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"/>
 <!--                <TextView-->

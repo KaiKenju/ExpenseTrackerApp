@@ -19,10 +19,10 @@
 
     <!--   light mode/ current light -->
     <style name="SCREEN">
-        <item name ="android:background">@color/end</item>
+        <item name ="android:background">#F9F9F9</item>
     </style>
     <style name="SCREEN_inside">
-        <item name ="android:background">#F0FFFF</item>
+        <item name ="android:background">#FFFFFF</item>
     </style>
 
     <!--  Text Background  -->

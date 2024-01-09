@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,9 +86,10 @@ public class DashBoardFragment extends Fragment {
     private PieChart pieChart;
     private BarChart barChart;
 
-    private double totalSum = 0;
-    private double totalSum_ex = 0;
-    private double total_balance = 0;
+    private double totalSum = 0.0;
+    private double totalSum_ex = 0.0;
+    private double total_balance = 0.0;
+    boolean isDarkModeEnabled = isDarkModeEnabled(); // check light mode
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -245,6 +248,7 @@ public class DashBoardFragment extends Fragment {
 
         return myview;
     }
+    // load locale
     private void loadLocale() {
         SharedPreferences prefs = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = prefs.getString("My_Lang", "");
@@ -257,6 +261,7 @@ public class DashBoardFragment extends Fragment {
         config.locale = locale;
         getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
     }
+    //display total balance
     private void updateTotalBalance() {
         double totalBalanceValue = Math.round((totalSum - totalSum_ex)*100.0)/100.0;
 
@@ -266,82 +271,102 @@ public class DashBoardFragment extends Fragment {
             totalBalance.setText(totalBalanceText);
         }
     }
+
     private void ChartPie(){
+        String nullString = null;
         ArrayList<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry((float) totalSum, "Income"));
         entries.add(new PieEntry((float) totalSum_ex,  "Expense"));
 
+        int[] colorsLightMode = new int[]{Color.parseColor("#00FF00"), Color.parseColor("#ea5757")};
+        int[] colorsDarkMode = new int[]{Color.parseColor("#00FF00"), Color.parseColor("#ea5757")};
 
-        PieDataSet pieDataSet = new PieDataSet(entries ,"");
+        // Chọn màu sắc dựa trên chế độ hiện tại
+        int[] colors = isDarkModeEnabled ? colorsDarkMode : colorsLightMode;
+
+        PieDataSet pieDataSet = new PieDataSet(entries, "");
         pieDataSet.setValueTextSize(15f);
-        pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-
+        pieDataSet.setColors(colors); // Sử dụng màu sắc tương ứng với chế độ hiện tại
 
         Legend legend = pieChart.getLegend();
         legend.setTextSize(16f);
-        legend.setTextColor(Color.WHITE);
-
+        //check light mode turn on => change color
+        if (isDarkModeEnabled) {
+            legend.setTextColor(Color.BLACK);
+        } else {
+            legend.setTextColor(Color.WHITE);
+        }
 
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.getDescription().setEnabled(false);
         pieChart.setCenterText("Summary");
-        pieChart.setEntryLabelTextSize(17f);
+        pieChart.setEntryLabelTextSize(18f);
         pieChart.animateY(1000);
         pieChart.invalidate();
+
+    }
+    private boolean isDarkModeEnabled() {
+        int nightMode = AppCompatDelegate.getDefaultNightMode();
+        return nightMode == AppCompatDelegate.MODE_NIGHT_YES;
     }
 
-    private void ChartBar(){
-        total_balance = totalSum - totalSum_ex;
+private void ChartBar() {
+    total_balance = totalSum - totalSum_ex;
 
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(0, (float) totalSum, "Income"));
-        barEntries.add(new BarEntry(1, (float) totalSum_ex, "Expense"));
-        barEntries.add(new BarEntry(2, (float) total_balance, "Balance"));
+    ArrayList<BarEntry> barEntries = new ArrayList<>();
+    barEntries.add(new BarEntry(0, (float) totalSum, "Income"));
+    barEntries.add(new BarEntry(1, (float) totalSum_ex, "Expense"));
+    barEntries.add(new BarEntry(2, (float) total_balance, "Balance"));
 
+    BarDataSet barDataSet = new BarDataSet(barEntries, "");
+    boolean isDarkMode = isDarkModeEnabled();
 
-        BarDataSet barDataSet = new BarDataSet(barEntries,"");
+    int[] colorsLightMode = new int[]{Color.parseColor("#00FF00"), Color.parseColor("#ea5757"), Color.parseColor("#f1802d")};
+    int[] colorsDarkMode = new int[]{Color.parseColor("#00FF00"), Color.parseColor("#ea5757"), Color.parseColor("#f1802d")}; // Đổi màu tùy thuộc vào chế độ dark mode
 
-        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-        barDataSet.setValueTextColor(Color.WHITE);
-        barDataSet.setValueTextSize(15f);
+    int[] colors = isDarkMode ? colorsDarkMode : colorsLightMode;
 
-        Legend legend = barChart.getLegend();
-        legend.setTextSize(16f);
-        legend.setTextColor(Color.WHITE);
+    barDataSet.setColors(colors);
+    barDataSet.setValueTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
+    barDataSet.setValueTextSize(15f);
 
+    Legend legend = barChart.getLegend();
+    legend.setTextSize(16f);
+    legend.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
 
-        ArrayList<String> labels = new ArrayList<>();
-        labels.add("Income");
-        labels.add("Expense");
-        labels.add("Balance");
+    ArrayList<String> labels = new ArrayList<>();
+    labels.add("Income");
+    labels.add("Expense");
+    labels.add("Balance");
 
-        BarData barData = new BarData(barDataSet);
-        barData.setBarWidth(0.5f); // Set độ rộng của cột
+    BarData barData = new BarData(barDataSet);
+    barData.setBarWidth(0.5f); // Set độ rộng của cột
 
-        barChart.setData(barData);
+    barChart.setData(barData);
 
-        // Đặt nhãn cho trục X
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setTextColor(Color.WHITE); // Đặt màu sắc của nhãn trên trục X
-        xAxis.setTextSize(14f);
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setGranularity(1f);
-        xAxis.setGranularityEnabled(true);
-        //trục y
-        YAxis yAxis = barChart.getAxisLeft();
-        YAxis yAxis1 = barChart.getAxisRight();// hoặc barChart.getAxisRight() nếu bạn muốn thay đổi trục Y bên phải
-        yAxis.setTextColor(Color.WHITE);
-        yAxis1.setTextColor(Color.WHITE);
+    // Đặt nhãn cho trục X
+    XAxis xAxis = barChart.getXAxis();
+    xAxis.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
+    xAxis.setTextSize(14f);
+    xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+    xAxis.setGranularity(1f);
+    xAxis.setGranularityEnabled(true);
 
-        barChart.getDescription().setEnabled(false);
-        barChart.setDrawGridBackground(false);
-        barChart.setDrawBorders(false);
-        barChart.setTouchEnabled(false);
+    //trục y
+    YAxis yAxis = barChart.getAxisLeft();
+    YAxis yAxis1 = barChart.getAxisRight();
+    yAxis.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
+    yAxis1.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
 
-        barChart.invalidate();
-    }
+    barChart.getDescription().setEnabled(false);
+    barChart.setDrawGridBackground(false);
+    barChart.setDrawBorders(false);
+    barChart.setTouchEnabled(false);
+
+    barChart.invalidate();
+}
 
 
 
@@ -391,8 +416,6 @@ public class DashBoardFragment extends Fragment {
         });
     }
     public void incomeDataInsert(){
-        String[] categories = {"Food", "Clothing", "Electronics", "Books", "Health"};
-
         AlertDialog.Builder mydialog = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = LayoutInflater.from(getActivity());
 
@@ -408,28 +431,6 @@ public class DashBoardFragment extends Fragment {
 
         Button btnSave = myviewm.findViewById(R.id.btnSave);
         ImageView btnCancel = myviewm.findViewById(R.id.btnCancel);
-        //spinner
-//        Spinner categorySpinner = myviewm.findViewById(R.id.category_spinner);
-//
-//        ArrayAdapter adapter = new ArrayAdapter<>(requireContext(), R.layout.custome_layout_spinner, categories);
-//        adapter.setDropDownViewResource(R.layout.custome_spinner_dropdown);
-//        categorySpinner.setAdapter(adapter);
-//        // select item
-//        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-//                String selectedCategory = categories[position]; // Get the selected category
-//                TextView selectedCategoryTextView = myviewm.findViewById(R.id.selected_category_textview);
-//                selectedCategoryTextView.setText("Selected Category: " + selectedCategory); // Update TextView
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//                // Handle no selection if needed
-//            }
-//        });
-
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
