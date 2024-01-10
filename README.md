@@ -47,6 +47,12 @@ In MVP,
 ![tempsnip1](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/3c374101-718d-4a8d-9178-0c271e687d2c)
 ![tempsnip2](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/872b12e3-f7d4-433c-a2b4-e933f11f34b5)
 ![tempsnip3](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/ebe3fe18-d871-4fa5-91a6-2a870201e7eb)
+
+
+
+
+
+
 - Light Mode 🌞
 ![l1](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/ddae8adc-79d6-4c15-93b0-5cb774116fcf)
 ![l2](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/5db618d9-8d41-44ed-a920-1030f4a5ba43)
