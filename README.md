@@ -40,6 +40,8 @@ In MVP,
 - MVP, View are linked to the Model directly through data bindings.
 
 - Unit testing is easier, as the View knows the Presenter through an interface that can easily be mocked.
+## OCR
+.......
 ## Output
 - Dark Mode 🌚
 
@@ -53,3 +55,4 @@ In MVP,
 ![l2](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/5db618d9-8d41-44ed-a920-1030f4a5ba43)
 ![l3](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/53b5fefa-0569-4317-a4c1-efcbe3319dd3)
 ![l4](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/0fdbd074-c60c-464a-8d5b-d566dd756b55)
+- We also support the multiple languages: English, Viet Nam, French
