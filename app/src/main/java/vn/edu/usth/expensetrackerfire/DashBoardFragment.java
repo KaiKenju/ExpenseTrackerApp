@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -96,6 +98,10 @@ public class DashBoardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View  myview = inflater.inflate(R.layout.fragment_dash_board, container, false);
+
+        if (!isNetworkAvailable()) {
+            Toast.makeText(getActivity(), "No network connection, You are offline", Toast.LENGTH_LONG).show();
+        }
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
@@ -247,6 +253,15 @@ public class DashBoardFragment extends Fragment {
 
 
         return myview;
+    }
+    //network connecting
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        }
+        return false;
     }
     // load locale
     private void loadLocale() {
@@ -467,12 +482,17 @@ private void ChartBar() {
                                     Toast.makeText(getActivity(), "Data Added", Toast.LENGTH_SHORT).show();
                                     ftAnimation();
                                     dialog.dismiss();
+
                                 } else {
                                     Toast.makeText(getActivity(), "Failed to add data", Toast.LENGTH_SHORT).show();
                                     Log.e("FirebaseError", "Failed to add data: " + task.getException());
                                 }
                             }
                         });
+                if (!isNetworkAvailable()) {
+                    ftAnimation();
+                    dialog.dismiss();
+                }
 
             }
         });
@@ -574,6 +594,10 @@ private void ChartBar() {
 
                 ftAnimation();
                 dialog.dismiss();
+                if (!isNetworkAvailable()) {
+                    ftAnimation();
+                    dialog.dismiss();
+                }
 
             }
         });

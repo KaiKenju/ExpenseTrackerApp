@@ -19,6 +19,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -112,6 +114,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        if (!isNetworkAvailable()) {
+            Toast.makeText(MainActivity.this, "No network available. Please check your connection.", Toast.LENGTH_SHORT).show();
+            return; // Prevent login attempts without a network
+        }
+
 
 
 
@@ -144,6 +151,13 @@ public class MainActivity extends AppCompatActivity {
         mDialog = new ProgressDialog(this);
         loginDetail();
     }
+    //check network
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     private void showChangeLanguage(){
         final String[] listItems = {"French", "Viet Nam", "English"};
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -330,6 +344,11 @@ public class MainActivity extends AppCompatActivity {
 
                 mDialog.setMessage("Processing...");
                 mDialog.show();
+                if (!isNetworkAvailable()) {
+                    mDialog.dismiss();
+                    Toast.makeText(MainActivity.this, "No network available. Please check your connection.", Toast.LENGTH_SHORT).show();
+                    return; // Prevent login attempts without a network
+                }
 
                 mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
