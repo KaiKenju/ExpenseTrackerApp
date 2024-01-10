@@ -4,7 +4,7 @@ This application is built in Java in the Android Studio development environment.
 
 # 🚀 Requirement
 - Android Studio: Android studio giraffe 2022.3.1 patch 3 or more
-- Android SDK:  Android Gradle Plugin Version 7.2.1 or more\n
+- Android SDK:  Android Gradle Plugin Version 7.2.1 or more and 
                 Gradle Version : 7.3.3 or more
 
 # 🚀 Dependencies
@@ -27,6 +27,7 @@ implementation 'com.google.android.gms:play-services-auth:20.7.0'
 
 ## MVP Model
 ![image](https://github.com/KaiKenju/GithubBrowser/assets/94727276/0e03853e-e3ac-4c2d-96d3-4562630e347f)
+
 MVP consists of three classes Model, View, and Presenter.
 
 In MVP, 
@@ -41,4 +42,5 @@ In MVP,
 - Unit testing is easier, as the View knows the Presenter through an interface that can easily be mocked.
 ## Output
 - Dark Mode 🌚
+![416792017_276722761759641_5197669841158283943_n](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/18b71710-ecfb-484b-82cb-05f812bc10a4) ![Capture2](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/336d5bfe-b74c-47c2-ada8-137694de2205) ![Capture3](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/a596f2f7-36c0-40be-a4f7-06ebf5e88921) ![Capture4](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/e2d60a1f-90e0-4a88-be80-e950f112fa24)
 - Light Mode 🌞
