@@ -42,9 +42,9 @@ In MVP,
 - Unit testing is easier, as the View knows the Presenter through an interface that can easily be mocked.
 ## Output
 - Dark Mode 🌚
-  !![Capture2](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/65df5e72-0878-4c9a-8e1d-410a37871f53)
-  ![Capture3-copy-0](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/08235b1c-1812-4f1d-a0b6-5796cb8c575f)
-  ![Capture4](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/d87fdd17-6ace-4428-9783-3b4952abeb19)
-  ![Capture5-copy-0](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/697a0d0b-5258-4916-a130-2c298d480b3c)
-  ![Capture6](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/e4f1d09c-13b6-4e8a-9a70-388eeabaaaf1)
+
+![tempsnip](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/4b287d36-caa5-4dd4-bd89-fec16f00dec3)
+![tempsnip1](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/3c374101-718d-4a8d-9178-0c271e687d2c)
+![tempsnip2](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/872b12e3-f7d4-433c-a2b4-e933f11f34b5)
+![tempsnip3](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/ebe3fe18-d871-4fa5-91a6-2a870201e7eb)
 - Light Mode 🌞
