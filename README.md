@@ -42,5 +42,8 @@ In MVP,
 - Unit testing is easier, as the View knows the Presenter through an interface that can easily be mocked.
 ## Output
 - Dark Mode 🌚
-![416792017_276722761759641_5197669841158283943_n](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/18b71710-ecfb-484b-82cb-05f812bc10a4) ![Capture2](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/336d5bfe-b74c-47c2-ada8-137694de2205) ![Capture3](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/a596f2f7-36c0-40be-a4f7-06ebf5e88921) ![Capture4](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/e2d60a1f-90e0-4a88-be80-e950f112fa24)
+  ![Capture2](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/723562ef-e9a7-4ab4-b810-73f7c9bce2b4)
+  ![Capture3](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/b6842aea-e4d4-4e8c-aed6-f1e65bc59473)
+  ![Capture4](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/a14e272a-700f-4857-815e-ea7f69b4f838)
+  ![Capture5](https://github.com/KaiKenju/ExpenseTrackerApp/assets/94727276/817c89ac-4f63-49e1-9564-70d597cd589e)
 - Light Mode 🌞
