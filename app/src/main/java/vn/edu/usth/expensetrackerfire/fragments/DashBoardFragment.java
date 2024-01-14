@@ -103,6 +103,7 @@ public class DashBoardFragment extends Fragment {
         mIncomeDatabase = FirebaseDatabase.getInstance().getReference().child("IncomeData").child(uid);
         mExpenseDatabase = FirebaseDatabase.getInstance().getReference().child("ExpenseDatabase").child(uid);
 
+        // đồng bộ giữ liệu khi app ko hoạt động
         mIncomeDatabase.keepSynced(true);
         mExpenseDatabase.keepSynced(true);
 
@@ -594,7 +595,7 @@ private void ChartBar() {
                 }
                 //add to firebase
                 String id  = mExpenseDatabase.push().getKey();
-                String imDate  = DateFormat.getDateInstance().format(new Date());
+                String imDate  = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT).format(new Date());
 
                 Data data = new Data(inamount, tmType,tmNote, id, imDate);
                 mExpenseDatabase.child(id).setValue(data);
