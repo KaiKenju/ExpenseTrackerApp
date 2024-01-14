@@ -1,4 +1,4 @@
-package vn.edu.usth.expensetrackerfire;
+package vn.edu.usth.expensetrackerfire.activities;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import vn.edu.usth.expensetrackerfire.R;
 
 public class ReseatActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package vn.edu.usth.expensetrackerfire;
+package vn.edu.usth.expensetrackerfire.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +19,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.checkerframework.checker.units.qual.m;
-
 import java.util.Locale;
+
+import vn.edu.usth.expensetrackerfire.MainActivity;
+import vn.edu.usth.expensetrackerfire.R;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -114,7 +113,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             mDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Registration Complete",Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
+                            Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                             intent.putExtra("NAME_KEY", name);
                             intent.putExtra("EMAIL_KEY", email);
                             startActivity(intent);
@@ -152,7 +151,7 @@ public class RegistrationActivity extends AppCompatActivity {
         mSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
     }

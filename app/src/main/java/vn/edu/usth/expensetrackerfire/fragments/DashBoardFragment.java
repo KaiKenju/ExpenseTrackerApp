@@ -1,4 +1,4 @@
-package vn.edu.usth.expensetrackerfire;
+package vn.edu.usth.expensetrackerfire.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,7 +12,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,12 +23,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +43,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,11 +56,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
+import vn.edu.usth.expensetrackerfire.R;
 import vn.edu.usth.expensetrackerfire.model.Data;
 
 
@@ -462,7 +456,14 @@ private void ChartBar() {
                     edtAmount.setError("Required Field..");
                     return;
                 }
-                double ouramountint = Double.parseDouble(amount);
+                //double ouramountint = Double.parseDouble(amount);
+                double ouramountint;
+                try {
+                    ouramountint = Double.parseDouble(amount);
+                } catch (NumberFormatException e) {
+                    edtAmount.setError("Invalid input. Please enter a valid number.");
+                    return;
+                }
 
                 if(TextUtils.isEmpty(note)){
                     edtNote.setError("Required Field..");
@@ -571,7 +572,15 @@ private void ChartBar() {
                     return;
                 }
 
-                double inamount = Double.parseDouble(tmAmount);
+                //double inamount = Double.parseDouble(tmAmount);
+                double inamount;
+
+                try {
+                    inamount = Double.parseDouble(tmAmount);
+                } catch (NumberFormatException e) {
+                    amount.setError("Invalid input. Please enter a valid number.");
+                    return;
+                }
 
                 if(TextUtils.isEmpty(tmType)){
                     type.setError("Required field..");
@@ -651,6 +660,7 @@ private void ChartBar() {
     public void onStart() {
         super.onStart();
 
+        // display short income in dashboard
         FirebaseRecyclerOptions<Data> options =
                 new FirebaseRecyclerOptions.Builder<Data>()
                         .setQuery(mIncomeDatabase, Data.class)
@@ -675,7 +685,8 @@ private void ChartBar() {
         mRecyclerIncome.setAdapter(incomeAdapter);
         incomeAdapter.startListening();
 
-        /// truot ngang tach biet
+        // display short expense in dashboard
+        /// truot ngang tach biet.
         FirebaseRecyclerOptions<Data> options1 =
                 new FirebaseRecyclerOptions.Builder<Data>()
                         .setQuery(mExpenseDatabase, Data.class)

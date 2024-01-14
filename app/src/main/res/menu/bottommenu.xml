@@ -15,5 +15,5 @@
         android:icon="@drawable/expense"/>
     <item android:id="@+id/ocra"
         android:title="OCR"
-        android:icon="@drawable/dashboard"/>
+        android:icon="@drawable/ocr_img"/>
 </menu>

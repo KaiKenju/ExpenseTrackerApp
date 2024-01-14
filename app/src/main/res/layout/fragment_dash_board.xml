@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/SCREEN"
-    tools:context=".DashBoardFragment">
+    tools:context=".fragments.DashBoardFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

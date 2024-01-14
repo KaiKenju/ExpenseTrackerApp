@@ -6,7 +6,7 @@
     android:orientation="vertical"
     style="@style/SCREEN"
     android:layout_height="match_parent"
-    tools:context=".ExpenseFragment">
+    tools:context=".fragments.ExpenseFragment">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         app:cardElevation="5dp"

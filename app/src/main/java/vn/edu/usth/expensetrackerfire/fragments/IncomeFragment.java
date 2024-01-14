@@ -1,4 +1,4 @@
-package vn.edu.usth.expensetrackerfire;
+package vn.edu.usth.expensetrackerfire.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -36,21 +36,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import vn.edu.usth.expensetrackerfire.R;
 import vn.edu.usth.expensetrackerfire.model.Data;
 
 
-public class ExpenseFragment extends Fragment {
+public class IncomeFragment extends Fragment {
     private FirebaseAuth mAuth;
-    private DatabaseReference mExpenseDatabase;;
+    private DatabaseReference mIncomeDatabase;
     //Recyle view
     private RecyclerView recyclerView;
     //textview
-    private TextView expenseSumResult;;
+    private TextView incomeTotalSum;
     //update edittext
     private EditText edtAmount,edtType, edtNote;
     private Button  btnUpdate;
@@ -58,14 +58,14 @@ public class ExpenseFragment extends Fragment {
     //data item value
     private String type,note;
     private double amount;
-    private String post_key_ex;;
+    private String post_key;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View myview = inflater.inflate(R.layout.fragment_expense, container, false);
+        View myview = inflater.inflate(R.layout.fragment_income, container, false);
         if (!isNetworkAvailable()) {
             Toast.makeText(getActivity(), "No network connection, You are offline", Toast.LENGTH_LONG).show();
         }
@@ -75,11 +75,11 @@ public class ExpenseFragment extends Fragment {
         FirebaseUser mUser = mAuth.getCurrentUser();
         String uid = mUser.getUid();
 
-        mExpenseDatabase  = FirebaseDatabase.getInstance().getReference().child("ExpenseDatabase").child(uid);
+        mIncomeDatabase = FirebaseDatabase.getInstance().getReference().child("IncomeData").child(uid);
 
-        expenseSumResult  = myview.findViewById(R.id.expense_txt_result);
+        incomeTotalSum = myview.findViewById(R.id.income_txt_result);
 
-        recyclerView = myview.findViewById(R.id.recycler_id_expense);
+        recyclerView = myview.findViewById(R.id.recycler_id_income);
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -90,19 +90,19 @@ public class ExpenseFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        mExpenseDatabase.addValueEventListener(new ValueEventListener() {
+        mIncomeDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                double expenseSum  = 0.0;
+                double totlavalue = 0.0;
 
                 for (DataSnapshot mysnapshot:dataSnapshot.getChildren()){
                     Data data = mysnapshot.getValue(Data.class);
-                    expenseSum+=data.getAmount();
+                    totlavalue+=data.getAmount();
 
 //                    String stTotalvalue = String.valueOf(totlavalue);
-                    String stTotalvalue = String.format("%.1f", expenseSum);
-                    expenseSumResult.setText("-$ " + stTotalvalue);
+                    String stTotalvalue = String.format("%.1f", totlavalue);
+                    incomeTotalSum.setText("+$ " + stTotalvalue);
                 }
 
 
@@ -125,7 +125,6 @@ public class ExpenseFragment extends Fragment {
         }
         return false;
     }
-    // save language
     private void loadLocale() {
         SharedPreferences prefs = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = prefs.getString("My_Lang", "");
@@ -145,7 +144,7 @@ public class ExpenseFragment extends Fragment {
 
         FirebaseRecyclerOptions<Data> options =
                 new FirebaseRecyclerOptions.Builder<Data>()
-                        .setQuery(mExpenseDatabase, Data.class)
+                        .setQuery(mIncomeDatabase, Data.class)
                         .build();
 
         FirebaseRecyclerAdapter<Data, MyViewHolder> adapter = new FirebaseRecyclerAdapter<Data, MyViewHolder>(options) {
@@ -160,7 +159,7 @@ public class ExpenseFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
 
-                        post_key_ex  = getRef(position).getKey();
+                        post_key = getRef(position).getKey();
 
                         type = model.getType();
                         note = model.getNote();
@@ -173,7 +172,7 @@ public class ExpenseFragment extends Fragment {
             @NonNull
             @Override
             public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.expense_recycler_data, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.income_recyler_data, parent, false);
                 return new MyViewHolder(view);
             }
         };
@@ -193,24 +192,23 @@ public class ExpenseFragment extends Fragment {
         }
 
         private void setType(String type){
-            TextView mType = mView.findViewById(R.id.type_txt_expense);
+            TextView mType = mView.findViewById(R.id.type_txt_income);
             mType.setText(type);
         }
         private void setNote(String note){
-            TextView mNote = mView.findViewById(R.id.note_txt_expense);
+            TextView mNote = mView.findViewById(R.id.note_txt_income);
             mNote.setText(note);
         }
 
         private void setDate(String date){
-            TextView mDate = mView.findViewById(R.id.date_txt_expense);
-            mDate.setText(date);
-
+            TextView mDate = mView.findViewById(R.id.date_txt_income);
+           mDate.setText(date);
         }
 
         private void setAmount(double amount){
-            TextView mAAmount  = mView.findViewById(R.id.amount_txt_expense);
-            String stamount  = String.valueOf(amount);
-            mAAmount.setText("-$ " + stamount);
+            TextView mAmount = mView.findViewById(R.id.amount_txt_income);
+            String stamount = String.valueOf(amount);
+            mAmount.setText("+$ " + stamount);
 
         }
 
@@ -250,14 +248,14 @@ public class ExpenseFragment extends Fragment {
             public void onClick(View view) {
                 type  = edtType.getText().toString().trim();
                 note  = edtNote.getText().toString().trim();
-                String stamount  = String.valueOf(amount);
-                stamount  = edtAmount.getText().toString().trim();
+                String mdAmount = String.valueOf(amount);
+                mdAmount = edtAmount.getText().toString().trim();
 
-                double intamount   = Double.parseDouble(stamount);
+                double myAmount  = Double.parseDouble(mdAmount);
                 String mDate = DateFormat.getDateInstance().format(new Date());
-                Data data = new Data(intamount, type, note,post_key_ex,mDate);
+                Data data = new Data(myAmount, type, note,post_key,mDate);
 
-                mExpenseDatabase.child(post_key_ex).setValue(data);
+                mIncomeDatabase.child(post_key).setValue(data);
                 dialog.dismiss();
             }
         });
@@ -283,7 +281,7 @@ public class ExpenseFragment extends Fragment {
                     public void onClick(View v) {
                         // Perform cancellation action
                         cancelDialog.dismiss();
-                        mExpenseDatabase.child(post_key_ex).removeValue();
+                        mIncomeDatabase.child(post_key).removeValue();
                         dialog.dismiss();
                         // Additional actions if needed
                     }
