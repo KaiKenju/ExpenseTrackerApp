@@ -660,22 +660,18 @@ private void ChartBar() {
     @Override
     public void onStart() {
         super.onStart();
-
         // display short income in dashboard
         FirebaseRecyclerOptions<Data> options =
                 new FirebaseRecyclerOptions.Builder<Data>()
                         .setQuery(mIncomeDatabase, Data.class)
                         .build();
-
         FirebaseRecyclerAdapter<Data, IncomeViewHolder> incomeAdapter = new FirebaseRecyclerAdapter<Data, IncomeViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull IncomeViewHolder viewHolder, int position, @NonNull Data model) {
                 viewHolder.setmIncomeType(model.getType());
                 viewHolder.setmIncomeAmount(model.getAmount());
                 viewHolder.setmIncomeDate(model.getDate());
-
             }
-
             @NonNull
             @Override
             public DashBoardFragment.IncomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -692,7 +688,6 @@ private void ChartBar() {
                 new FirebaseRecyclerOptions.Builder<Data>()
                         .setQuery(mExpenseDatabase, Data.class)
                         .build();
-
         FirebaseRecyclerAdapter<Data, ExpenseViewHolder> expenseAdapter = new FirebaseRecyclerAdapter<Data, ExpenseViewHolder>(options1) {
             @Override
             protected void onBindViewHolder(@NonNull ExpenseViewHolder viewHolder, int position, @NonNull Data model) {
@@ -701,7 +696,6 @@ private void ChartBar() {
                 viewHolder.setmExpenseDate(model.getDate());
 
             }
-
             @NonNull
             @Override
             public DashBoardFragment.ExpenseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -94,6 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="@string/password"
+            android:inputType="textPassword"
             android:background="@drawable/editext_background"
             android:padding="15dp"
             android:id="@+id/password_reg"

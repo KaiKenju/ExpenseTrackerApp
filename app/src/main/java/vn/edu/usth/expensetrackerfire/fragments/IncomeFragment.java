@@ -226,7 +226,7 @@ public class IncomeFragment extends Fragment {
         edtType = myview.findViewById(R.id.type_edt);
         edtNote = myview.findViewById(R.id.note_edt);
 
-        //set data to edit text
+        //set data to edit text, cho pheps user đc chỉnh sửa dữ liệu hiện tại, dòng length đặt con trỏ ở cuối
         edtType.setText(type);
         edtType.setSelection(type.length());
 
