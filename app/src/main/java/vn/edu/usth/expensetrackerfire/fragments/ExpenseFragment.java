@@ -255,7 +255,7 @@ public class ExpenseFragment extends Fragment {
                 stamount  = edtAmount.getText().toString().trim();
 
                 double intamount   = Double.parseDouble(stamount);
-                String mDate = DateFormat.getDateInstance().format(new Date());
+                String mDate = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT).format(new Date());
                 Data data = new Data(intamount, type, note,post_key_ex,mDate);
 
                 mExpenseDatabase.child(post_key_ex).setValue(data);

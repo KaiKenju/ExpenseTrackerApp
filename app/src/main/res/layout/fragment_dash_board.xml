@@ -53,7 +53,7 @@
                                     android:gravity="center"
                                     android:text="0"
                                     style="@style/TEXT"
-                                    android:textSize="30dp" />
+                                    android:textSize="20dp" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -69,37 +69,39 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:orientation="horizontal"
-
                                 style="@style/SCREEN"
                                 android:layout_height="wrap_content">
                                 <LinearLayout
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
                                     android:orientation="vertical"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginTop="5dp"
                                     android:layout_marginBottom="5dp"
                                     android:layout_marginRight="5dp"
+                                    android:layout_gravity="left"
                                     style="@style/SCREEN_inside"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="match_parent">
                                     <ImageView
                                         android:layout_width="wrap_content"
                                         android:src="@drawable/top"
                                         android:layout_marginTop="5dp"
-                                        android:layout_marginLeft="165dp"
-                                        android:layout_marginRight="10dp"
+                                        android:layout_gravity="right"
+                                        android:layout_marginRight="5dp"
                                         android:layout_height="wrap_content"/>
                                     <TextView
                                         android:layout_width="wrap_content"
                                         style="@style/TEXT_nhat"
-                                        android:layout_marginLeft="35dp"
+                                        android:layout_marginLeft="15dp"
                                         android:text="@string/totalincome"
                                         android:layout_marginBottom="5dp"
                                         android:layout_marginTop="5dp"
+                                        android:layout_marginRight="35dp"
                                         android:layout_height="wrap_content"/>
                                     <TextView
                                         android:id="@+id/income_set_result"
                                         android:layout_width="wrap_content"
-                                        android:textAppearance="?android:textAppearanceLarge"
+                                        android:textAppearance="?android:textAppearanceMedium"
                                         style="@style/TEXT"
                                         android:text="000.00"
                                         android:layout_marginLeft="25dp"
@@ -108,41 +110,44 @@
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:orientation="vertical"
                                     style="@style/SCREEN_inside"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="right"
+                                    android:layout_marginLeft="10dp"
                                     android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="10dp"
                                     android:layout_marginBottom="5dp"
-                                    android:layout_height="wrap_content">
+                                    android:orientation="vertical">
 
                                     <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="160dp"
+                                        android:layout_gravity="right"
                                         android:layout_marginTop="5dp"
                                         android:layout_marginRight="5dp"
                                         android:src="@drawable/bot" />
 
                                     <TextView
-                                        android:layout_width="wrap_content"
                                         style="@style/TEXT_nhat"
-                                        android:layout_marginLeft="35dp"
-                                        android:text="@string/totalexpense"
-                                        android:layout_marginBottom="5dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="15dp"
                                         android:layout_marginTop="5dp"
-                                        android:layout_height="wrap_content"/>
+                                        android:layout_marginRight="10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="@string/totalexpense" />
+
                                     <TextView
                                         android:id="@+id/expense_set_result"
-                                        android:layout_width="wrap_content"
-                                        android:textAppearance="?android:textAppearanceLarge"
                                         style="@style/TEXT"
-                                        android:text="000.00"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
                                         android:layout_marginLeft="30dp"
                                         android:layout_marginBottom="10dp"
-                                        android:layout_height="wrap_content"/>
-
+                                        android:text="000.00"
+                                        android:textAppearance="?android:textAppearanceMedium" />
 
 
                                 </LinearLayout>
@@ -250,10 +255,12 @@
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/pie_chart"
+                    android:layout_margin="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="400dp" />
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/bar_chart"
+                    android:layout_margin="10dp"
                     android:layout_width="match_parent"
                     android:layout_marginBottom="50dp"
                     android:layout_height="400dp"/>

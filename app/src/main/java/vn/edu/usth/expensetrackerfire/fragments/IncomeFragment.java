@@ -252,7 +252,7 @@ public class IncomeFragment extends Fragment {
                 mdAmount = edtAmount.getText().toString().trim();
 
                 double myAmount  = Double.parseDouble(mdAmount);
-                String mDate = DateFormat.getDateInstance().format(new Date());
+                String mDate = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.SHORT).format(new Date());
                 Data data = new Data(myAmount, type, note,post_key,mDate);
 
                 mIncomeDatabase.child(post_key).setValue(data);

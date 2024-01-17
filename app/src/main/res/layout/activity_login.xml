@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 		        android:text="@string/daudong"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/end"
                 android:textAppearance="?android:textAppearanceLarge"/>
             <TextView
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/email"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:textSize="20dp"
                 android:textColor="@color/end" />
             <EditText
@@ -62,7 +62,7 @@
                 android:layout_margin="10dp"
                 android:hint="@string/hintemail"
                 android:background="@drawable/editext_background"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:id="@+id/email_login"
                 />
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/password"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:textSize="20dp"
                 android:textColor="@color/end" />
             <EditText
@@ -80,7 +80,7 @@
                 android:inputType="textPassword"
                 android:hint="@string/password"
                 android:background="@drawable/editext_background"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:id="@+id/password_login"
                 />
             <TextView
@@ -103,14 +103,14 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/login"
                 android:background="@drawable/editext_background"
                 android:id="@+id/btn_login"
-                android:textAppearance="?android:textAppearanceLarge"
+                android:textAppearance="?android:textAppearanceMedium"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -124,10 +124,9 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
                 android:src="@drawable/gg"
                 android:id="@+id/btn_login_gg"
                 android:textAppearance="?android:textAppearanceLarge"
@@ -135,7 +134,6 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"

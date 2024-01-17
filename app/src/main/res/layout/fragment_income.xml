@@ -36,7 +36,7 @@
                     android:id="@+id/income_txt_result"
                     android:layout_width="match_parent"
                     android:text="0"
-                    android:textSize="30dp"
+                    android:textSize="25dp"
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:textColor="#2ABD30"

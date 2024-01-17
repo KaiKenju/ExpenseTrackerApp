@@ -18,6 +18,8 @@
                 android:layout_gravity="center"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
+
+                <!-- ImageView ở bên trái -->
                 <ImageView
                     android:id="@+id/btnCancel"
                     android:layout_width="wrap_content"
@@ -27,18 +29,10 @@
                     android:layout_marginLeft="30dp"
                     android:scaleY="1.25"
                     android:layout_height="wrap_content"/>
-<!--                <TextView-->
-<!--                    android:id="@+id/btnCancel"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_gravity="left|center"-->
-<!--                    android:layout_marginLeft="25dp"-->
-<!--                    android:text="&lt;"-->
-<!--                    style="@style/TEXT"-->
-<!--                    android:scaleY="1.0"-->
-<!--                    android:textSize="35dp"-->
-<!--                    android:layout_height="wrap_content"/>-->
+
+                <!-- TextView ở giữa -->
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:text="Details"
                     android:padding="5dp"
                     android:layout_marginTop="20dp"
@@ -46,16 +40,18 @@
                     android:layout_marginRight="40dp"
                     android:layout_marginBottom="20dp"
                     android:textColor="@color/end"
-                    android:textSize="25dp"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                android:layout_marginTop="25dp"
                 android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content">
                 <TextView
@@ -67,7 +63,7 @@
                     android:id="@+id/type_edt"
                     android:layout_width="match_parent"
                     android:hint="type"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="bold"
                     style="@style/TEXT"
                     android:layout_marginTop="5dp"
@@ -78,7 +74,7 @@
                 android:orientation="vertical"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content">
                 <TextView
@@ -102,7 +98,7 @@
                         android:id="@+id/amount_edt"
                         android:layout_width="match_parent"
                         android:hint="amount"
-                        android:textSize="20dp"
+                        android:textSize="15dp"
                         android:textStyle="bold"
                         style="@style/TEXT"
                         android:layout_marginTop="5dp"
@@ -116,7 +112,7 @@
                 android:orientation="vertical"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content">
                 <TextView
@@ -128,7 +124,7 @@
                     android:id="@+id/note_edt"
                     android:layout_width="match_parent"
                     android:hint="note"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="bold"
                     style="@style/TEXT"
                     android:layout_marginTop="5dp"
@@ -184,9 +180,9 @@
                     android:layout_height="wrap_content">
                     <Button
                         android:id="@+id/btnSave"
-                        android:layout_width="100dp"
+                        android:layout_width="90dp"
                         android:text="Save"
-                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textAppearance="?android:textAppearanceSmall"
                         android:textColor="@android:color/black"
                         android:background="@drawable/edit_data"
                         android:layout_height="wrap_content"/>

@@ -14,7 +14,9 @@
         <ImageView
             android:layout_width="wrap_content"
             android:src="@drawable/img_expense"
-            android:padding="5dp"
+            android:padding="2.5dp"
+            android:scaleX="0.85"
+            android:scaleY="0.85"
             android:background="#2e2d31"
             android:layout_margin="5dp"
             android:layout_gravity="center"
@@ -46,7 +48,7 @@
                     android:text="Note"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="10dp"
                     style="@style/TEXT_nhat"
                     android:layout_below="@+id/note_txt_expense"
                     android:id="@+id/note_txt_expense"
@@ -78,7 +80,7 @@
                     android:text="Jan 2,2024"
                     style="@style/TEXT_nhat"
                     android:layout_gravity="right"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="10dp"
                     android:textStyle="bold"
                     android:id="@+id/date_txt_expense"
                     android:layout_height="wrap_content"/>
