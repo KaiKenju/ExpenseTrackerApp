@@ -365,7 +365,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Login Successful...", Toast.LENGTH_SHORT).show();
                         }else{
                             mDialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "Login Failed...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Email or password incorrect...", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
