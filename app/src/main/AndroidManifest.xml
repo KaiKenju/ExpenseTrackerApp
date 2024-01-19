@@ -27,7 +27,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ReseatActivity"
+            android:name=".activities.ResetActivity"
+            android:label="@string/title_activity_registration"
             android:exported="false">
         </activity>
         <activity

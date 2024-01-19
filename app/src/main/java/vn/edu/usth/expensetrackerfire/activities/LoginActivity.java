@@ -293,7 +293,7 @@ public class LoginActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.email_login);
         mPassword = findViewById(R.id.password_login);
         btnLogin = findViewById(R.id.btn_login);
-        mForgetPassword = findViewById(R.id.forget_password);
+        mForgetPassword = findViewById(R.id.forget_password_login);
         mSignuphere = findViewById(R.id.signup_reg);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -316,17 +316,17 @@ public class LoginActivity extends AppCompatActivity {
                     mEmail.setError("Enter a valid email address");
                     return;
                 }
-                // Kiểm tra độ dài tối thiểu cho mật khẩu
-                final int MIN_PASSWORD_LENGTH = 6;
-                if (password.length() < MIN_PASSWORD_LENGTH) {
-                    mPassword.setError("Password should be at least " + MIN_PASSWORD_LENGTH + " characters");
-                    return;
-                }
-                String passwordPattern = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).*$";
-                if (!password.matches(passwordPattern)) {
-                    mPassword.setError("Password should contain at least one digit, one letter, and one special character");
-                    return;
-                }
+//                // Kiểm tra độ dài tối thiểu cho mật khẩu
+//                final int MIN_PASSWORD_LENGTH = 6;
+//                if (password.length() < MIN_PASSWORD_LENGTH) {
+//                    mPassword.setError("Password should be at least " + MIN_PASSWORD_LENGTH + " characters");
+//                    return;
+//                }
+//                String passwordPattern = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).*$";
+//                if (!password.matches(passwordPattern)) {
+//                    mPassword.setError("Password should contain at least one digit, one letter, and one special character");
+//                    return;
+//                }
 
 
                 mDialog.setMessage("Processing...");
@@ -385,7 +385,7 @@ public class LoginActivity extends AppCompatActivity {
         mForgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ReseatActivity.class));
+                startActivity(new Intent(getApplicationContext(), ResetActivity.class));
             }
         });
     }
