@@ -9,7 +9,6 @@
         android:allowBackup="true"
         android:icon="@drawable/art_app"
         android:label="Wallet Helper"
-        android:roundIcon="@color/black"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTrackerFire">
         <activity

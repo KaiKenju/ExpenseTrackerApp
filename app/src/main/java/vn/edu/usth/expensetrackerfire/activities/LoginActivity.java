@@ -102,14 +102,22 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         if (!isNetworkAvailable()) {
-            Toast.makeText(LoginActivity.this, "No network available. Please check your connection.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(LoginActivity.this, "No network available. Please check your connection.", Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+            String personName = sharedPreferences.getString("NAME_KEY", "");
+            String personEmail = sharedPreferences.getString("EMAIL_KEY", "");
+            String personPhotoUrl = sharedPreferences.getString("PROFILE_KEY", "");
+
+            // Check data user in  SharedPreferences or not
+            if (!TextUtils.isEmpty(personName) && !TextUtils.isEmpty(personEmail)) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("NAME_KEY", personName);
+                intent.putExtra("EMAIL_KEY", personEmail);
+                intent.putExtra("PROFILE_KEY", personPhotoUrl);
+                startActivity(intent);
+            }
             return; // Prevent login attempts without a network
         }
-
-
-
-
-
 
         //firebase account gg
         mAuth = FirebaseAuth.getInstance();
