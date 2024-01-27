@@ -93,9 +93,10 @@ public class DashBoardFragment extends Fragment {
         // Inflate the layout for this fragment
         View  myview = inflater.inflate(R.layout.fragment_dash_board, container, false);
 
-        if (!isNetworkAvailable()) {
-            Toast.makeText(getActivity(), "No network connection, You are offline", Toast.LENGTH_LONG).show();
-        }
+        // Enable offline capabilities
+       // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser mUser = mAuth.getCurrentUser();
@@ -409,22 +410,45 @@ private void ChartBar() {
         }
     }
 
-    private void addData(){
-        //fab button
-        fab_income_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                incomeDataInsert();
-            }
-        });
+//    private void addData(){
+//        //fab button
+//        fab_income_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                incomeDataInsert();
+//            }
+//        });
+//
+//        fab_expense_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                expenseDataInsert();
+//            }
+//        });
+//    }
+    private void addData() {
+        if (isNetworkAvailable()) {
+            // Network is available, add data directly to Firebase
+            fab_income_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    incomeDataInsert();
+                }
+            });
 
-        fab_expense_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                expenseDataInsert();
-            }
-        });
+            fab_expense_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    expenseDataInsert();
+                }
+            });
+        } else {
+            // No network, handle data locally (store in SQLite or another local storage)
+            // Implement your local data storage logic here
+            Toast.makeText(getActivity(), "No network connection, data will be stored locally", Toast.LENGTH_SHORT).show();
+        }
     }
+
     public void incomeDataInsert(){
         AlertDialog.Builder mydialog = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = LayoutInflater.from(getActivity());

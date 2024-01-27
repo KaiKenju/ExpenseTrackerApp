@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -26,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import vn.edu.usth.expensetrackerfire.activities.LoginActivity;
 import vn.edu.usth.expensetrackerfire.fragments.DashBoardFragment;
@@ -89,10 +91,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     ////
-
-
-
-
         //logout
         mAuth = FirebaseAuth.getInstance();
         //retrieve data

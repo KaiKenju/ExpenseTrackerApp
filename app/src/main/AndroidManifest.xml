@@ -10,6 +10,7 @@
         android:icon="@drawable/art_app"
         android:label="Wallet Helper"
         android:supportsRtl="true"
+        android:name=".Offline"
         android:theme="@style/Theme.ExpenseTrackerFire">
         <activity
             android:name=".activities.RegistrationActivity"
